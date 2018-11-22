@@ -1,0 +1,8 @@
+{
+  "name": "surix-sdk-monorepo",
+  "private": true,
+  "devDependencies": {
+    "lerna": "^3.4.3"
+  },
+  "workspaces": ["packages/*"]
+}
