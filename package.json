@@ -4,5 +4,17 @@
   "devDependencies": {
     "lerna": "^3.4.3"
   },
-  "workspaces": ["packages/*"]
+  "jest": {
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testRegex": "(/tests/.*|(\\.|/)(test|spec))\\.(js?|ts?)$",
+    "moduleFileExtensions": [
+      "ts",
+      "js"
+    ]
+  },
+  "workspaces": [
+    "packages/*"
+  ]
 }

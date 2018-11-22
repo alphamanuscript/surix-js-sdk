@@ -1,0 +1,16 @@
+{
+    "compileOnSave": false,
+    "compilerOptions": {
+      "declaration": true,
+      "importHelpers": true,
+      "lib": [
+        "es2015",
+        "dom"
+      ],
+      "module": "commonjs",
+      "moduleResolution": "node",
+      "noImplicitAny": false,
+      "sourceMap": true,
+      "target": "es5"
+    }
+  }
