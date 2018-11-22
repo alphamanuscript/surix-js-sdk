@@ -19,6 +19,7 @@
         ["Number", "Use 'number' instead."],
         ["Boolean", "Use 'boolean' instead."]
       ],
+      "indent": [true, "spaces", 2],
       "class-name": true,
       "curly": [true, "ignore-same-line"],
       "forin": true,

@@ -10,7 +10,15 @@ export class ApiEntity {
 export type FieldType = 'text' | 'boolean' | 'number' | 'datetime'
     | 'file' | 'object' | 'list';
 
-export type FieldValue = string | boolean | ListItemValue[] | ObjectValue;
+export type FieldValue = string | boolean | FileValue | ListValue | ObjectValue;
+
+export interface FileValue {
+    ref: string;
+    mimeType: string;
+    downloadUrl: string;
+}
+
+export type ListValue = ListItemValue[];
 
 export interface ListItemValue {
     type: FieldType;
@@ -18,12 +26,14 @@ export interface ListItemValue {
 }
 
 export interface ObjectValue {
-    [fieldName: string]: {
-        name: string;
-        type: FieldType;
-        label: string;
-        value: FieldValue;
-    };
+    [fieldName: string]: Field;
+}
+
+export interface Field {
+    name: string;
+    type: FieldType;
+    label: string;
+    value: FieldValue;
 }
 
 export interface AuthContext {

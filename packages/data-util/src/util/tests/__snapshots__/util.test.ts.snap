@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`util dehydrateValue when value is complex nested object should recursively convert value to plain object without field metadata 1`] = `
+Object {
+  "biz": Array [
+    true,
+    "xyz",
+    2018-02-24T09:20:33.885Z,
+    342.234,
+    Object {
+      "downloadUrl": "down3",
+      "mimeType": "image/jpeg",
+      "ref": "f3",
+    },
+    Object {
+      "fizz": "buzz",
+    },
+  ],
+  "foo": Object {
+    "bar": Object {
+      "baq": 20,
+      "bat": Object {
+        "downloadUrl": "down1",
+        "mimeType": "image/png",
+        "ref": "f2",
+      },
+      "baz": "abc",
+      "bez": 2018-02-22T09:19:33.885Z,
+      "buz": false,
+    },
+  },
+}
+`;
