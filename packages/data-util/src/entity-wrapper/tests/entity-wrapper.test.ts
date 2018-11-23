@@ -74,16 +74,16 @@ describe('EntityWrapper', () => {
     describe('when path is provided', () => {
       it('should find the field using util.walkEntityPath on the raw entity', () => {
         const spy = jest.spyOn(util, 'walkEntityPath');
-        wrapped.value(['address', 'landmarks']);
+        wrapped.get(['address', 'landmarks']);
         expect(spy.mock.calls).toMatchSnapshot();
       });
       it('should convert the field to plain object using util.dehydrateValue', () => {
         const spy = jest.spyOn(util, 'dehydrateValue');
-        wrapped.value(['address', 'landmarks']);
+        wrapped.get(['address', 'landmarks']);
         expect(spy.mock.calls).toMatchSnapshot();
       });
       it('should return the dehydrated plain value', () => {
-        const res = wrapped.value(['address', 'landmarks']);
+        const res = wrapped.get(['address', 'landmarks']);
         expect(res).toMatchSnapshot();
       });
     });
@@ -92,47 +92,47 @@ describe('EntityWrapper', () => {
         const spy = jest.spyOn(util, 'walkEntityPath');
         const stringPath = 'address.city';
         const arrayPath = ['address', 'city'];
-        wrapped.value(stringPath);
+        wrapped.get(stringPath);
         expect(spy).toHaveBeenCalledWith(entity, arrayPath);
       });
       it('should turn empty string to empty array', () => {
         const spy = jest.spyOn(util, 'walkEntityPath');
-        wrapped.value('');
+        wrapped.get('');
         expect(spy).toHaveBeenCalledWith(entity, []);
       });
       it('should turn non-dotted string as a single key array', () => {
         const spy = jest.spyOn(util, 'walkEntityPath');
-        wrapped.value('address');
+        wrapped.get('address');
         expect(spy).toHaveBeenCalledWith(entity, ['address']);
       });
       it('should return the same result as with an array path', () => {
-        const res = wrapped.value('address.landmarks');
+        const res = wrapped.get('address.landmarks');
         expect(res).toMatchSnapshot();
       });
     });
     describe('when the key path cannot be matched', () => {
       it('should return undefined', () => {
-        const res = wrapped.value('unknown.path');
+        const res = wrapped.get('unknown.path');
         expect(res).toBeUndefined();
       });
     });
     describe('when the path is empty', () => {
       it('should return undefined', () => {
-        const res = wrapped.value('');
+        const res = wrapped.get('');
         expect(res).toBeUndefined();
       });
     });
     describe('when default value is provided', () => {
       it('returns default value if path cannot be matched', () => {
-        const res = wrapped.value('unknown.path', 'test');
+        const res = wrapped.get('unknown.path', 'test');
         expect(res).toBe('test');
       });
       it('returns plain field value if path is matched', () => {
-        const res = wrapped.value('address.city', 'test');
+        const res = wrapped.get('address.city', 'test');
         expect(res).toBe('Nairobi');
       });
       it('returns default value if path is empty', () => {
-        const res = wrapped.value('', 'test');
+        const res = wrapped.get('', 'test');
         expect(res).toBe('test');
       });
     });

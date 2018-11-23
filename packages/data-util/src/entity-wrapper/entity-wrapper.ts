@@ -76,7 +76,7 @@ export class EntityWrapper {
    * the path can include field names as well as array indices
    * @param defaultValue 
    */
-  value (fieldPath: string | FieldPathArray, defaultValue?: any): any {
+  get (fieldPath: string | FieldPathArray, defaultValue?: any): any {
     const pathArray = normalizeFieldPath(fieldPath);
     return this._value(pathArray, defaultValue);
   }
