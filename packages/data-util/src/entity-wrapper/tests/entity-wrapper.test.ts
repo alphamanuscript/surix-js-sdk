@@ -77,12 +77,12 @@ describe('EntityWrapper', () => {
         wrapped.get(['address', 'landmarks']);
         expect(spy.mock.calls).toMatchSnapshot();
       });
-      it('should convert the field to plain object using util.dehydrateValue', () => {
-        const spy = jest.spyOn(util, 'dehydrateValue');
+      it('should convert the field to plain object using util.deflateValue', () => {
+        const spy = jest.spyOn(util, 'deflateValue');
         wrapped.get(['address', 'landmarks']);
         expect(spy.mock.calls).toMatchSnapshot();
       });
-      it('should return the dehydrated plain value', () => {
+      it('should return the deflated plain value', () => {
         const res = wrapped.get(['address', 'landmarks']);
         expect(res).toMatchSnapshot();
       });
@@ -139,16 +139,16 @@ describe('EntityWrapper', () => {
   });
 
   describe('data', () => {
-    it('should return data converted to plain dehydrated object', () => {
-      const spy = jest.spyOn(util, 'dehydrateValue');
+    it('should return data converted to plain deflated object', () => {
+      const spy = jest.spyOn(util, 'deflateValue');
       const res = wrapped.data();
       expect(res).toMatchSnapshot();
       expect(spy).toHaveBeenCalledWith(entity.data, 'object');
     });
-    it('should cache the converted data and not call util.dehydrateEachTime', () => {
+    it('should cache the converted data and not call util.deflateEachTime', () => {
       const mockData = { title: 'Title' };
       jest.restoreAllMocks();
-      const spy = jest.spyOn(util, 'dehydrateValue').mockReturnValue(mockData);
+      const spy = jest.spyOn(util, 'deflateValue').mockReturnValue(mockData);
       const first = wrapped.data();
       const second = wrapped.data();
       expect(first).toEqual(mockData);

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EntityWrapper data should return data converted to plain dehydrated object 1`] = `
+exports[`EntityWrapper data should return data converted to plain deflated object 1`] = `
 Object {
   "active": false,
   "address": Object {
@@ -60,7 +60,7 @@ Object {
 }
 `;
 
-exports[`EntityWrapper value when path is provided should convert the field to plain object using util.dehydrateValue 1`] = `
+exports[`EntityWrapper value when path is provided should convert the field to plain object using util.deflateValue 1`] = `
 Array [
   Array [
     Array [
@@ -194,7 +194,7 @@ Array [
 ]
 `;
 
-exports[`EntityWrapper value when path is provided should return the dehydrated plain value 1`] = `
+exports[`EntityWrapper value when path is provided should return the deflated plain value 1`] = `
 Array [
   "Near historical monument",
 ]

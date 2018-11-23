@@ -1,5 +1,5 @@
 import { ApiEntity, AuthContext, Field, FieldPathArray, FieldType, TypeValuePair } from '../types';
-import { dehydrateValue, toFieldPathArray, walkEntityPath } from '../util';
+import { deflateValue, toFieldPathArray, walkEntityPath } from '../util';
 
 type FieldOrValuePair = Field | TypeValuePair;
 type NullableFieldOrValuePair = FieldOrValuePair | undefined;
@@ -83,7 +83,7 @@ export class EntityWrapper {
 
   private _value (fieldPath: FieldPathArray, defaultValue?: any): any {
     const field = walkEntityPath(this._entity, fieldPath);
-    return field ? dehydrateValue(field.value, field.type) : defaultValue;
+    return field ? deflateValue(field.value, field.type) : defaultValue;
   }
 
   /**
@@ -132,7 +132,7 @@ export class EntityWrapper {
    */
   data (): object {
     if (!this._dataCache) {
-      this._dataCache = dehydrateValue(this._entity.data, 'object');
+      this._dataCache = deflateValue(this._entity.data, 'object');
     }
     return this._dataCache;
   }

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`util dehydrateValue when value is complex nested object should recursively convert value to plain object without field metadata 1`] = `
+exports[`util deflateValue when value is complex nested object should recursively convert value to plain object without field metadata 1`] = `
 Object {
   "biz": Array [
     true,

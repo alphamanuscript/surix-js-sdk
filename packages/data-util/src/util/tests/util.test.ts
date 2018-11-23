@@ -15,26 +15,26 @@ describe('util', () => {
     });
   });
 
-  describe('dehydrateValue', () => {
+  describe('deflateValue', () => {
     describe('when value type is text', () => {
       it('should return the string text value', () => {
-        expect(util.dehydrateValue('value', 'text')).toBe('value');
+        expect(util.deflateValue('value', 'text')).toBe('value');
       });
     });
     describe('when value type is boolean', () => {
       it('should return the boolean value', () => {
-        expect(util.dehydrateValue(true, 'boolean')).toBe(true);
+        expect(util.deflateValue(true, 'boolean')).toBe(true);
       });
     });
     describe('when value type is number', () => {
       it('should the value cast to Number', () => {
-        expect(util.dehydrateValue('120', 'number')).toBe(120);
+        expect(util.deflateValue('120', 'number')).toBe(120);
       });
     });
     describe('when value type is datetime', () => {
       it('should the value cast to a Date', () => {
         const value = '2017-02-22T09:19:33.885Z';
-        expect(util.dehydrateValue(value, 'datetime')).toEqual(new Date(value));
+        expect(util.deflateValue(value, 'datetime')).toEqual(new Date(value));
       });
     });
     describe('when value type is file', () => {
@@ -44,7 +44,7 @@ describe('util', () => {
           mimeType: 'image/png',
           downloadUrl: '/download'
         };
-        expect(util.dehydrateValue(value, 'file')).toEqual(value);
+        expect(util.deflateValue(value, 'file')).toEqual(value);
       });
     });
     describe('when value type is object', () => {
@@ -58,7 +58,7 @@ describe('util', () => {
             downloadUrl: 'download1'
           }, 'file', 'cover', 'Cover')
         };
-        expect(util.dehydrateValue(value, 'object')).toEqual({
+        expect(util.deflateValue(value, 'object')).toEqual({
           title: 'My Title',
           read: true,
           cover: {
@@ -78,7 +78,7 @@ describe('util', () => {
           { type: 'file', 
             value: { ref: 'file32', mimeType: 'text/plain', downloadUrl: 'download' } }
         ];
-        expect(util.dehydrateValue(value, 'list')).toEqual([
+        expect(util.deflateValue(value, 'list')).toEqual([
           'test', 300, new Date('2017-02-22T09:19:33.885Z'),
           { ref: 'file32', mimeType: 'text/plain', downloadUrl: 'download' }
         ]);
@@ -113,7 +113,7 @@ describe('util', () => {
             } }
           ], 'list', 'biz', 'Biz')
         };
-        expect(util.dehydrateValue(value, 'object')).toMatchSnapshot();
+        expect(util.deflateValue(value, 'object')).toMatchSnapshot();
       });
     });
   });

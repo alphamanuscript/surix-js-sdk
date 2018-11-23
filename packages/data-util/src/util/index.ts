@@ -1,5 +1,5 @@
 export {
-  dehydrateValue,
+  deflateValue,
   makeField,
   toFieldPathArray,
   walkEntityPath,

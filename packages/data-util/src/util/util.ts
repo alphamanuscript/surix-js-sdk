@@ -36,16 +36,16 @@ export function walkFieldPath (field: WalkFieldArg, path: FieldPathArray): WalkF
   }
 }
 
-export function dehydrateValue (value: any, type: FieldType): any {
+export function deflateValue (value: any, type: FieldType): any {
   switch (type) {
     case 'datetime':
       return new Date(value);
     case 'number':
       return Number(value);
     case 'list':
-      return dehydrateList(value);
+      return deflateList(value);
     case 'object':
-      return dehydrateObject(value);
+      return deflateObject(value);
     case 'boolean':
     case 'text':
     case 'file':
@@ -54,27 +54,27 @@ export function dehydrateValue (value: any, type: FieldType): any {
   }
 }
 
-export function dehydrateText (textValue: string): string {
+export function deflateText (textValue: string): string {
   return textValue;
 }
 
-export function dehydrateNumber (numValue: string): number {
+export function deflateNumber (numValue: string): number {
   return Number(numValue);
 }
 
-export function dehydrateObject (obj: ObjectValue): object {
+export function deflateObject (obj: ObjectValue): object {
   return Object.keys(obj)
     .reduce((result, key) => {
       const { type, value } = obj[key];
       return {
         ...result,
-        [key]: dehydrateValue(value, type)
+        [key]: deflateValue(value, type)
       };
     }, {});
 }
 
-export function dehydrateList (list: ListValue): any[] {
-  return list.map(({ type, value }) => dehydrateValue(value, type));
+export function deflateList (list: ListValue): any[] {
+  return list.map(({ type, value }) => deflateValue(value, type));
 }
 
 export function makeField (value: FieldValue, type: FieldType, name: string, label: string): Field {
