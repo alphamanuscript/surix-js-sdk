@@ -23,6 +23,9 @@
   "repository": "https://github.com/alphamanuscript/surix-js-sdk/tree/master/packages/data-helpers",
   "author": "Alpha Manuscript <surix@manuscript.live> (https://surix.co)",
   "license": "MIT",
+  "dependencies": {
+    "@surix/data-helpers": "^0.3.0"
+  },
   "devDependencies": {
     "@types/jest": "^23.3.9",
     "jest": "^23.6.0",

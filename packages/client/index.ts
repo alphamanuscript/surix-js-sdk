@@ -1,0 +1,2 @@
+export { SurixClient } from './client';
+
