@@ -23,7 +23,6 @@
   "repository": "https://github.com/alphamanuscript/surix-js-sdk/tree/master/packages/data-util",
   "author": "Alpha Manuscript <surix@manuscript.live> (https://surix.co)",
   "license": "MIT",
-  "private": false,
   "devDependencies": {
     "@types/jest": "^23.3.9",
     "jest": "^23.6.0",
@@ -33,5 +32,6 @@
     "typescript": "^3.1.6",
     "webpack": "^4.26.0",
     "webpack-cli": "^3.1.2"
-  }
+  },
+  "gitHead": "dd0cd08190cd61be105d0096d1d239c9152224d1"
 }
