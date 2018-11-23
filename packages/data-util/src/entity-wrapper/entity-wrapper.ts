@@ -1,4 +1,5 @@
-import { ApiEntity, AuthContext } from '../types';
+import { ApiEntity, AuthContext, FieldPathArray } from '../types';
+import { toFieldPathArray, walkEntityPath } from '../util';
 
 export class EntityWrapper {
   private _entity: ApiEntity;
@@ -30,8 +31,12 @@ export class EntityWrapper {
     return new Date(this._entity.updatedAt);
   }
 
-  value (fieldPath: string): any {
-
+  value (fieldPath: string | FieldPathArray): any {
+    const pathArray = Array.isArray(fieldPath) && fieldPath || toFieldPathArray(fieldPath);
+    return this._value(pathArray);
+  }
+  _value (fieldPath: FieldPathArray): any {
+    return walkEntityPath(this._entity, fieldPath);
   }
     
 }

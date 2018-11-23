@@ -1,0 +1,197 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EntityWrapper value dotted field paths should support dot notation for nested fields 1`] = `
+Array [
+  "Near historical monument",
+]
+`;
+
+exports[`EntityWrapper value should call util.walkEntityPath to get value at key path 1`] = `
+Array [
+  Array [
+    Object {
+      "_id": "entity1",
+      "createdAt": "2017-02-22T09:19:33.885Z",
+      "createdBy": Object {
+        "_id": "user1",
+        "type": "user",
+      },
+      "data": Object {
+        "active": Object {
+          "label": "Active",
+          "name": "active",
+          "type": "boolean",
+          "value": false,
+        },
+        "address": Object {
+          "label": "Address",
+          "name": "address",
+          "type": "object",
+          "value": Object {
+            "city": Object {
+              "label": "City",
+              "name": "city",
+              "type": "text",
+              "value": "Nairobi",
+            },
+            "landmarks": Object {
+              "label": "Landmarks",
+              "name": "landmarks",
+              "type": "list",
+              "value": Array [
+                Object {
+                  "type": "text",
+                  "value": "Near historical monument",
+                },
+              ],
+            },
+            "street": Object {
+              "label": "Street",
+              "name": "street",
+              "type": "text",
+              "value": "Some street",
+            },
+          },
+        },
+        "count": Object {
+          "label": "Count",
+          "name": "count",
+          "type": "number",
+          "value": "100",
+        },
+        "image": Object {
+          "label": "Image",
+          "name": "image",
+          "type": "file",
+          "value": Object {
+            "downloadUrl": "download",
+            "mimeType": "image/jpeg",
+            "ref": "file1",
+          },
+        },
+        "lastSeen": Object {
+          "label": "Last seen",
+          "name": "lastSeen",
+          "type": "datetime",
+          "value": "2018-11-22T09:19:33.885Z",
+        },
+        "misc": Object {
+          "label": "Misc",
+          "name": "misc",
+          "type": "list",
+          "value": Array [
+            Object {
+              "type": "file",
+              "value": Object {
+                "downloadUrl": "download2",
+                "mimeType": "application/pdf",
+                "ref": "file2",
+              },
+            },
+            Object {
+              "type": "number",
+              "value": "223.45",
+            },
+            Object {
+              "type": "object",
+              "value": Object {
+                "foo": Object {
+                  "label": "Foo",
+                  "name": "foo",
+                  "type": "text",
+                  "value": "bar",
+                },
+              },
+            },
+          ],
+        },
+        "title": Object {
+          "label": "Title",
+          "name": "title",
+          "type": "text",
+          "value": "My Title",
+        },
+      },
+      "tags": Array [
+        "posts",
+        "stuff",
+      ],
+      "updatedAt": "2018-10-22T09:19:33.885Z",
+    },
+    Array [
+      "misc",
+      2,
+    ],
+  ],
+]
+`;
+
+exports[`EntityWrapper value should return the plain array at the specified key path 1`] = `
+Array [
+  Object {
+    "downloadUrl": "download2",
+    "mimeType": "application/pdf",
+    "ref": "file2",
+  },
+  223.45,
+  Object {
+    "foo": "bar",
+  },
+]
+`;
+
+exports[`EntityWrapper value should return the plain object at the specified key path 1`] = `
+Object {
+  "city": "Nairobi",
+  "landmarks": Array [
+    "Near historical monument",
+  ],
+  "street": "Some street",
+}
+`;
+
+exports[`EntityWrapper value when the path goes through an array index should return bar 1`] = `"bar"`;
+
+exports[`EntityWrapper value when the path goes through an array index should return bar when using array paths 1`] = `"bar"`;
+
+exports[`EntityWrapper value when the path goes through an array index should return bar when using array paths with integer index 1`] = `"bar"`;
+
+exports[`EntityWrapper value when the path is empty array should return entity data as plain dehydrated object 1`] = `
+Object {
+  "active": false,
+  "address": Object {
+    "city": "Nairobi",
+    "landmarks": Array [
+      "Near historical monument",
+    ],
+    "street": "Some street",
+  },
+  "count": 100,
+  "image": Object {
+    "downloadUrl": "download",
+    "mimeType": "image/jpeg",
+    "ref": "file1",
+  },
+  "lastSeen": 2018-11-22T09:19:33.885Z,
+  "misc": Array [
+    Object {
+      "downloadUrl": "download2",
+      "mimeType": "application/pdf",
+      "ref": "file2",
+    },
+    223.45,
+    Object {
+      "foo": "bar",
+    },
+  ],
+  "title": "My Title",
+}
+`;
+
+exports[`EntityWrapper value when the path is empty string should return entity data as plain dehydrated object 1`] = `undefined`;
+
+exports[`EntityWrapper value when the path stops at an array index should return historical monument item 1`] = `"Near historical monument"`;
+
+exports[`EntityWrapper value when the path stops at an array index should return historical monument item when using array paths 1`] = `"Near historical monument"`;
+
+exports[`EntityWrapper value when the path stops at an array index should return historical monument item when using array paths with integer index 1`] = `"Near historical monument"`;

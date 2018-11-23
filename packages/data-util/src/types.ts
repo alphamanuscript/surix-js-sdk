@@ -7,6 +7,8 @@ export class ApiEntity {
     tags: string[];
 }
 
+export type FieldPathArray = Array<string|number>;
+
 export type FieldType = 'text' | 'boolean' | 'number' | 'datetime'
     | 'file' | 'object' | 'list';
 

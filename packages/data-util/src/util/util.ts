@@ -1,12 +1,11 @@
 import {
   ApiEntity,
   Field,
+  FieldPathArray,
   FieldType,
   FieldValue,
   ListValue,
   ObjectValue } from '../types';
-
-type FieldPathArray = Array<string|number>;
 
 export function toFieldPathArray (fieldPath: string): FieldPathArray {
   return fieldPath.split('.');
