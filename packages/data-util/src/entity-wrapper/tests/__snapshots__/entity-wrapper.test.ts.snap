@@ -1,5 +1,65 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`EntityWrapper data should return data converted to plain dehydrated object 1`] = `
+Object {
+  "active": false,
+  "address": Object {
+    "city": "Nairobi",
+    "landmarks": Array [
+      "Near historical monument",
+    ],
+    "street": "Some street",
+  },
+  "count": 100,
+  "image": Object {
+    "downloadUrl": "download",
+    "mimeType": "image/jpeg",
+    "ref": "file1",
+  },
+  "lastSeen": 2018-11-22T09:19:33.885Z,
+  "misc": Array [
+    Object {
+      "downloadUrl": "download2",
+      "mimeType": "application/pdf",
+      "ref": "file2",
+    },
+    223.45,
+    Object {
+      "foo": "bar",
+    },
+  ],
+  "title": "My Title",
+}
+`;
+
+exports[`EntityWrapper field should return the raw field (list of landmarks) 1`] = `
+Object {
+  "label": "Landmarks",
+  "name": "landmarks",
+  "type": "list",
+  "value": Array [
+    Object {
+      "type": "text",
+      "value": "Near historical monument",
+    },
+  ],
+}
+`;
+
+exports[`EntityWrapper field when a default is provided should return the true (list of landmarks) field if the the path is matched 1`] = `
+Object {
+  "label": "Landmarks",
+  "name": "landmarks",
+  "type": "list",
+  "value": Array [
+    Object {
+      "type": "text",
+      "value": "Near historical monument",
+    },
+  ],
+}
+`;
+
 exports[`EntityWrapper value when path is provided should convert the field to plain object using util.dehydrateValue 1`] = `
 Array [
   Array [

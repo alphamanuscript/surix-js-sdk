@@ -137,4 +137,67 @@ describe('EntityWrapper', () => {
       });
     });
   });
+
+  describe('data', () => {
+    it('should return data converted to plain dehydrated object', () => {
+      const spy = jest.spyOn(util, 'dehydrateValue');
+      const res = wrapped.data();
+      expect(res).toMatchSnapshot();
+      expect(spy).toHaveBeenCalledWith(entity.data, 'object');
+    });
+    it('should cache the converted data and not call util.dehydrateEachTime', () => {
+      const mockData = { title: 'Title' };
+      jest.restoreAllMocks();
+      const spy = jest.spyOn(util, 'dehydrateValue').mockReturnValue(mockData);
+      const first = wrapped.data();
+      const second = wrapped.data();
+      expect(first).toEqual(mockData);
+      expect(second).toEqual(mockData);
+      expect(spy).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  describe('type', () => {
+    it('should return the type of the field at the specified path', () => {
+      const type = wrapped.type('address.landmarks');
+      expect(type).toEqual('list');
+    });
+    it('should return undefined if the path cannot be matched', () => {
+      const type = wrapped.type('address.unknown.landmarks');
+      expect(type).toBeUndefined();
+    });
+    describe('when a default is provided', () => {
+      it('should return the default if the path cannot be matched', () => {
+        const type = wrapped.type('address.unknown.landmarks', 'text');
+        expect(type).toBe('text');
+      });
+      it('should return the true type if the the patch is matched', () => {
+        const type = wrapped.type('address.landmarks', 'boolean');
+        expect(type).toBe('list');
+      });
+    });
+  });
+
+  describe('field', () => {
+    it('should return the raw field (list of landmarks)', () => {
+      const field = wrapped.field('address.landmarks');
+      expect(field).toMatchSnapshot();
+    });
+    it('should return undefined if the path cannot be matched', () => {
+      const field = wrapped.field('address.unknown.landmarks');
+      expect(field).toBeUndefined();
+    });
+    describe('when a default is provided', () => {
+      it('should return the default if the path cannot be matched', () => {
+        const defField = util.makeField('test', 'text', 'name', 'label');
+        const field = wrapped.field('address.unknown.landmarks', defField);
+        expect(field).toEqual(defField);
+      });
+      it('should return the true (list of landmarks) field if the the path is matched', () => {
+        const defField = util.makeField('test', 'text', 'name', 'label');
+        const field = wrapped.field('address.landmarks', defField);
+        expect(field).toMatchSnapshot();
+      });
+    });
+  });
 });
