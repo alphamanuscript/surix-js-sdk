@@ -15,7 +15,7 @@ module.exports = {
     extensions: [ '.tsx', '.ts', '.js' ]
   },
   output: {
-    filename: 'data-util.js',
+    filename: 'data-helpers.js',
     path: path.resolve(__dirname, 'dist'),
     libraryTarget: 'umd',
     library: 'Surix'
