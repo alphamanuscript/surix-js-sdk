@@ -1,6 +1,6 @@
 {
   "name": "@surix/data-util",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Utilities for making it easy to work with Surix entities",
   "main": "dist/data-util.js",
   "typings": "dist/index.d.ts",
