@@ -3,6 +3,11 @@ import { dehydrateValue, toFieldPathArray, walkEntityPath } from '../util';
 
 export class EntityWrapper {
   private _entity: ApiEntity;
+
+  /**
+   * 
+   * @param rawEntity raw entity from the Surix API
+   */
   constructor (rawEntity: ApiEntity) {
     this._entity = rawEntity;
   }
@@ -68,7 +73,7 @@ export class EntityWrapper {
     const pathArray = Array.isArray(fieldPath) && fieldPath || toFieldPathArray(fieldPath);
     return this._value(pathArray, defaultValue);
   }
-  _value (fieldPath: FieldPathArray, defaultValue?: any): any {
+  private _value (fieldPath: FieldPathArray, defaultValue?: any): any {
     const field = walkEntityPath(this._entity, fieldPath);
     return field ? dehydrateValue(field.value, field.type) : defaultValue;
   }

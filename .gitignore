@@ -1,6 +1,6 @@
 # Build/Dependencies
 node_modules
-dist
+*dist
 
 # OS Specific Files
 .DS_Store

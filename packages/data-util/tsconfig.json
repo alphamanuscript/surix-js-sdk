@@ -6,6 +6,7 @@
         "strictNullChecks": true
     },
     "exclude": [
-        "dist/**/*"
+        "dist/**/*",
+        "**/*.test.ts"
     ]
 }

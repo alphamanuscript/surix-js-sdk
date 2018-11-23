@@ -65,7 +65,7 @@
     },
     "linterOptions": {
       "exclude": [
-        "src/protos/firestore_proto_api.d.ts"
+        "dist/*"
       ]
     }
   }
