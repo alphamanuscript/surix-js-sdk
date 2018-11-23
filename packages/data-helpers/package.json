@@ -1,6 +1,6 @@
 {
   "name": "@surix/data-helpers",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "description": "Utilities for making it easy to work with Surix entities",
   "main": "dist/data-helpers.js",
   "typings": "dist/index.d.ts",
