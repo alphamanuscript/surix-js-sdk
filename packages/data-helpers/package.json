@@ -1,5 +1,5 @@
 {
-  "name": "@surix/data-util",
+  "name": "@surix/data-helpers",
   "version": "0.1.3",
   "description": "Utilities for making it easy to work with Surix entities",
   "main": "dist/data-util.js",
