@@ -2,7 +2,7 @@
   "name": "@surix/data-helpers",
   "version": "0.2.0",
   "description": "Utilities for making it easy to work with Surix entities",
-  "main": "dist/data-util.js",
+  "main": "dist/data-helpers.js",
   "typings": "dist/index.d.ts",
   "scripts": {
     "test": "jest",
@@ -20,7 +20,7 @@
       "js"
     ]
   },
-  "repository": "https://github.com/alphamanuscript/surix-js-sdk/tree/master/packages/data-util",
+  "repository": "https://github.com/alphamanuscript/surix-js-sdk/tree/master/packages/data-helpers",
   "author": "Alpha Manuscript <surix@manuscript.live> (https://surix.co)",
   "license": "MIT",
   "devDependencies": {
@@ -33,5 +33,5 @@
     "webpack": "^4.26.0",
     "webpack-cli": "^3.1.2"
   },
-  "gitHead": "e5bdf4608101b10d504afaf599fc663058e5753b"
+  "gitHead": "6b1f4867c72dcd08e89c0143d4fd1e0df18b501a"
 }

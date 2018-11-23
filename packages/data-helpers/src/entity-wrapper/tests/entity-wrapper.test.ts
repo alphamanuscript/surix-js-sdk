@@ -55,6 +55,7 @@ describe('EntityWrapper', () => {
   describe('top-level entity metadata', () => {
     it('should offer direct access _id, tags, createdBy properties', () => {
       expect(wrapped._id).toEqual(entity._id);
+      expect(wrapped.id).toEqual(entity._id);
       expect(wrapped.tags).toEqual(entity.tags);
       expect(wrapped.createdBy).toEqual(entity.createdBy);
     });
