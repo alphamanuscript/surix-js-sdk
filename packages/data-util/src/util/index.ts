@@ -3,5 +3,5 @@ export {
   makeField,
   toFieldPathArray,
   walkEntityPath,
-  walkObjectPath
+  walkFieldPath
 } from './util';

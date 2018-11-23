@@ -1,5 +1,7 @@
 import * as util from '../util';
 
+import { Field, ObjectValue, ApiEntity } from '../../types';
+
 describe('util', () => {
   describe('makeField', () => {
     it('should create a field based on the give value and metadata', () => {
@@ -12,6 +14,7 @@ describe('util', () => {
       });
     });
   });
+
   describe('dehydrateValue', () => {
     describe('when value type is text', () => {
       it('should return the string text value', () => {
@@ -111,6 +114,124 @@ describe('util', () => {
           ], 'list', 'biz', 'Biz')
         };
         expect(util.dehydrateValue(value, 'object')).toMatchSnapshot();
+      });
+    });
+  });
+
+  describe('walkFieldPath', () => {
+    let objField: Field;
+
+    beforeEach(() => {
+      objField = util.makeField({
+        foo: util.makeField({
+          fizz: util.makeField('buzz', 'text', 'fizz', 'Fizz')
+        }, 'object', 'foo', 'Foo'),
+        bar: util.makeField('bar value', 'text', 'bar', 'Bar'),
+        rabs: util.makeField([
+          {
+            type: 'boolean',
+            value: true
+          },
+          {
+            type: 'object',
+            value: {
+              dar: util.makeField('dar value', 'text', 'dar', 'Dar')
+            }
+          }
+        ], 'list', 'rabs', 'Rabs')
+      }, 'object', 'name', 'label');
+    });
+
+    describe('when the start field has type object', () => {
+      it('should return nested field (fizz) at the specified path', () => {
+        const res = util.walkFieldPath(objField, ['foo', 'fizz']);
+        expect(res).toMatchSnapshot();
+      });
+      it('should walk through array indices and return dar field', () => {
+        const res = util.walkFieldPath(objField, ['rabs', '1', 'dar']);
+        expect(res).toMatchSnapshot();
+      });
+      it('should support array indices as ints (returns dar field)', () => {
+        const res = util.walkFieldPath(objField, ['rabs', 1, 'dar']);
+        expect(res).toMatchSnapshot();
+      });
+    });
+    describe('when the start field is a list', () => {
+      it('should return nested list item (returns boolean item)', () => {
+        const value = objField.value as ObjectValue;
+        const res = util.walkFieldPath(value.rabs, [0]);
+        expect(res).toMatchSnapshot();
+      });
+      it('should return walk nested object and return dar field', () => {
+        const value = objField.value as ObjectValue;
+        const res = util.walkFieldPath(value.rabs, [1, 'dar']);
+        expect(res).toMatchSnapshot();
+      });
+    });
+    describe('when path is empty', () => {
+      it('should return the input field', () => {
+        const res = util.walkFieldPath(objField, []);
+        expect(res).toEqual(objField);
+      });
+    });
+    describe('when the path cannot be matched', () => {
+      it('should return undefined', () => {
+        expect(util.walkFieldPath(objField, ['foo', 'fizz', 'unknown'])).toBeUndefined();
+        expect(util.walkFieldPath(objField, ['foo', 'unknown', 'fizz'])).toBeUndefined();
+        expect(util.walkFieldPath(objField, ['random', 'path'])).toBeUndefined();
+      });
+      it('should return undefined when using array index out of bound', () => {
+        expect(util.walkFieldPath(objField, ['rabs', 2, 'dar'])).toBeUndefined();
+      });
+    });
+  });
+
+  describe('walkEntityPath', () => {
+    let entity: ApiEntity;
+    beforeEach(() => {
+      entity = {
+        _id: 'e1',
+        createdAt: '2018-02-22T09:19:33.885Z',
+        updatedAt: '2018-02-22T09:19:33.885Z',
+        createdBy: {
+          _id: 'u1',
+          type: 'user'
+        },
+        tags: [],
+        data: {
+          foo: util.makeField({
+            fizz: util.makeField('buzz', 'text', 'fizz', 'Fizz')
+          }, 'object', 'foo', 'Foo'),
+          bar: util.makeField('bar value', 'text', 'bar', 'Bar'),
+          rabs: util.makeField([
+            {
+              type: 'boolean',
+              value: true
+            },
+            {
+              type: 'object',
+              value: {
+                dar: util.makeField('dar value', 'text', 'dar', 'Dar')
+              }
+            }
+          ], 'list', 'rabs', 'Rabs')
+        }
+      };
+    });
+    it('should call walkFieldPath with the first field (returns dar field)', () => {
+      const res = util.walkEntityPath(entity, ['rabs', 1, 'dar']);
+      expect(res).toMatchSnapshot();
+    });
+    describe('when key in the path is not in entity', () => {
+      it('should return undefined', () => {
+        expect(util.walkEntityPath(entity, ['dabs', 1, 'dar'])).toBeUndefined();
+        expect(util.walkEntityPath(entity, ['rabs', 2, 'dar'])).toBeUndefined();
+        expect(util.walkEntityPath(entity, ['foo', 'barred'])).toBeUndefined();
+      });
+    });
+    describe('when path is empty', () => {
+      it('should return undefined', () => {
+        expect(util.walkEntityPath(entity, [])).toBeUndefined();
       });
     });
   });

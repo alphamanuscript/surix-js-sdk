@@ -31,10 +31,13 @@ export interface ObjectValue {
     [fieldName: string]: Field;
 }
 
-export interface Field {
+export interface Field extends TypeValuePair {
     name: string;
-    type: FieldType;
     label: string;
+}
+
+export interface TypeValuePair {
+    type: FieldType;
     value: FieldValue;
 }
 

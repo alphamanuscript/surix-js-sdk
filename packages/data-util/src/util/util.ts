@@ -5,27 +5,34 @@ import {
   FieldType,
   FieldValue,
   ListValue,
-  ObjectValue } from '../types';
+  ObjectValue, 
+  TypeValuePair} from '../types';
+
+type WalkFieldArg = TypeValuePair | Field;
+type WalkFieldReturn = TypeValuePair | Field | undefined;
 
 export function toFieldPathArray (fieldPath: string): FieldPathArray {
   return fieldPath.split('.');
 }
 
-export function walkEntityPath (entity: ApiEntity, path: FieldPathArray): any {
-  return walkObjectPath(entity.data, path);
+export function walkEntityPath (entity: ApiEntity, path: FieldPathArray): WalkFieldReturn {
+  const [firstKey, ...pathRemaining] = path;
+  if (firstKey in entity.data) {
+    return walkFieldPath(entity.data[firstKey], pathRemaining);
+  }
 }
 
-export function walkObjectPath (obj: ObjectValue | ListValue, path: FieldPathArray): any {
+export function walkFieldPath (field: WalkFieldArg, path: FieldPathArray): WalkFieldReturn {
   const [firstKey, ...restPath] = path;
   if (typeof firstKey === 'undefined') {
-    return Array.isArray(obj) ? dehydrateList(obj) : dehydrateObject(obj);
+    return field;
   }
-  if (firstKey in obj) {
-    const field = obj[firstKey];
-    if (field.type === 'object' || field.type === 'list') {
-      return walkObjectPath(field.value, restPath);
+  if (field.type === 'object' || field.type === 'list') {
+    const value = field.value as ObjectValue | ListValue;
+    if (firstKey in value) {
+      const subField = value[firstKey];
+      return walkFieldPath(subField, restPath);
     }
-    return dehydrateValue(field.value, field.type);
   }
 }
 
