@@ -97,6 +97,19 @@ export class EntityWrapper {
     const pathArray = normalizeFieldPath(fieldPath);
     const field = walkEntityPath(this._entity, pathArray);
     return field ? field.type : defaultType;
+  }
+
+  /**
+   * returns the label of the field with the specified key
+   * @param fieldPath the key of the field, this can be a
+   * dotted string "field.nestedField" or an array ["field", "nestedField"]
+   * the path can include field names as well as array indices
+   * @param defaultLabel the label to return if the field does not exist
+   */
+  label (fieldPath: string | FieldPathArray, defaultLabel?: string): string|undefined {
+    const pathArray = normalizeFieldPath(fieldPath);
+    const field = walkEntityPath(this._entity, pathArray) as Field;
+    return field && field.label ? field.label : defaultLabel;
   } 
 
   /**

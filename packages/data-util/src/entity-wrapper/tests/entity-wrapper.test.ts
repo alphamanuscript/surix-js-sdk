@@ -171,7 +171,7 @@ describe('EntityWrapper', () => {
         const type = wrapped.type('address.unknown.landmarks', 'text');
         expect(type).toBe('text');
       });
-      it('should return the true type if the the patch is matched', () => {
+      it('should return the true type if the the path is matched', () => {
         const type = wrapped.type('address.landmarks', 'boolean');
         expect(type).toBe('list');
       });
@@ -197,6 +197,35 @@ describe('EntityWrapper', () => {
         const defField = util.makeField('test', 'text', 'name', 'label');
         const field = wrapped.field('address.landmarks', defField);
         expect(field).toMatchSnapshot();
+      });
+    });
+  });
+
+  describe('label', () => {
+    it('should return the label of the field at the specified path', () => {
+      const label = wrapped.label('address.landmarks');
+      expect(label).toEqual('Landmarks');
+    });
+    it('should return undefined if the field at the path does not have a label', () => {
+      const label = wrapped.label('address.landmarks.0');
+      expect(label).toBeUndefined();
+    });
+    it('should return undefined if the path cannot be matched', () => {
+      const label = wrapped.label('address.unknown.landmarks');
+      expect(label).toBeUndefined();
+    });
+    describe('when a default is provided', () => {
+      it('should return the default if the path cannot be matched', () => {
+        const label = wrapped.label('address.unknown.landmarks', 'Label');
+        expect(label).toBe('Label');
+      });
+      it('should return the default if the field at the path does not have a label', () => {
+        const label = wrapped.label('address.landmarks.0', 'Label');
+        expect(label).toBe('Label');
+      });
+      it('should return the true label if the the path is matched', () => {
+        const label = wrapped.label('address.landmarks', 'boolean');
+        expect(label).toBe('Landmarks');
       });
     });
   });
