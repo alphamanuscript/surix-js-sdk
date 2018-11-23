@@ -31,15 +31,13 @@ export class EntityWrapper {
     return new Date(this._entity.updatedAt);
   }
 
-  value (fieldPath: string | FieldPathArray): any {
+  value (fieldPath: string | FieldPathArray, defaultValue?: any): any {
     const pathArray = Array.isArray(fieldPath) && fieldPath || toFieldPathArray(fieldPath);
-    return this._value(pathArray);
+    return this._value(pathArray, defaultValue);
   }
-  _value (fieldPath: FieldPathArray): any {
+  _value (fieldPath: FieldPathArray, defaultValue?: any): any {
     const field = walkEntityPath(this._entity, fieldPath);
-    if (field) {
-      return dehydrateValue(field.value, field.type);
-    }
+    return field ? dehydrateValue(field.value, field.type) : defaultValue;
   }
     
 }

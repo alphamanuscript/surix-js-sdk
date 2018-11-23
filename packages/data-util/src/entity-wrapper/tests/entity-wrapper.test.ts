@@ -122,5 +122,19 @@ describe('EntityWrapper', () => {
         expect(res).toBeUndefined();
       });
     });
+    describe('when default value is provided', () => {
+      it('returns default value if path cannot be matched', () => {
+        const res = wrapped.value('unknown.path', 'test');
+        expect(res).toBe('test');
+      });
+      it('returns plain field value if path is matched', () => {
+        const res = wrapped.value('address.city', 'test');
+        expect(res).toBe('Nairobi');
+      });
+      it('returns default value if path is empty', () => {
+        const res = wrapped.value('', 'test');
+        expect(res).toBe('test');
+      });
+    });
   });
 });
