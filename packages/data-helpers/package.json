@@ -1,6 +1,6 @@
 {
   "name": "@surix/data-helpers",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Utilities for making it easy to work with Surix entities",
   "main": "dist/data-helpers.js",
   "typings": "dist/index.d.ts",
@@ -33,5 +33,5 @@
     "webpack": "^4.26.0",
     "webpack-cli": "^3.1.2"
   },
-  "gitHead": "6b1f4867c72dcd08e89c0143d4fd1e0df18b501a"
+  "gitHead": "65b5f84cd7b86725cb851929671dde789f1ec7ed"
 }
