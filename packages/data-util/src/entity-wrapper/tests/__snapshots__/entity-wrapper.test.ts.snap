@@ -1,12 +1,20 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EntityWrapper value dotted field paths should support dot notation for nested fields 1`] = `
+exports[`EntityWrapper value when path is provided should convert the field to plain object using util.dehydrateValue 1`] = `
 Array [
-  "Near historical monument",
+  Array [
+    Array [
+      Object {
+        "type": "text",
+        "value": "Near historical monument",
+      },
+    ],
+    "list",
+  ],
 ]
 `;
 
-exports[`EntityWrapper value should call util.walkEntityPath to get value at key path 1`] = `
+exports[`EntityWrapper value when path is provided should find the field using util.walkEntityPath on the raw entity 1`] = `
 Array [
   Array [
     Object {
@@ -119,79 +127,21 @@ Array [
       "updatedAt": "2018-10-22T09:19:33.885Z",
     },
     Array [
-      "misc",
-      2,
+      "address",
+      "landmarks",
     ],
   ],
 ]
 `;
 
-exports[`EntityWrapper value should return the plain array at the specified key path 1`] = `
+exports[`EntityWrapper value when path is provided should return the dehydrated plain value 1`] = `
 Array [
-  Object {
-    "downloadUrl": "download2",
-    "mimeType": "application/pdf",
-    "ref": "file2",
-  },
-  223.45,
-  Object {
-    "foo": "bar",
-  },
+  "Near historical monument",
 ]
 `;
 
-exports[`EntityWrapper value should return the plain object at the specified key path 1`] = `
-Object {
-  "city": "Nairobi",
-  "landmarks": Array [
-    "Near historical monument",
-  ],
-  "street": "Some street",
-}
+exports[`EntityWrapper value when string path is provided should return the same result as with an array path 1`] = `
+Array [
+  "Near historical monument",
+]
 `;
-
-exports[`EntityWrapper value when the path goes through an array index should return bar 1`] = `"bar"`;
-
-exports[`EntityWrapper value when the path goes through an array index should return bar when using array paths 1`] = `"bar"`;
-
-exports[`EntityWrapper value when the path goes through an array index should return bar when using array paths with integer index 1`] = `"bar"`;
-
-exports[`EntityWrapper value when the path is empty array should return entity data as plain dehydrated object 1`] = `
-Object {
-  "active": false,
-  "address": Object {
-    "city": "Nairobi",
-    "landmarks": Array [
-      "Near historical monument",
-    ],
-    "street": "Some street",
-  },
-  "count": 100,
-  "image": Object {
-    "downloadUrl": "download",
-    "mimeType": "image/jpeg",
-    "ref": "file1",
-  },
-  "lastSeen": 2018-11-22T09:19:33.885Z,
-  "misc": Array [
-    Object {
-      "downloadUrl": "download2",
-      "mimeType": "application/pdf",
-      "ref": "file2",
-    },
-    223.45,
-    Object {
-      "foo": "bar",
-    },
-  ],
-  "title": "My Title",
-}
-`;
-
-exports[`EntityWrapper value when the path is empty string should return entity data as plain dehydrated object 1`] = `undefined`;
-
-exports[`EntityWrapper value when the path stops at an array index should return historical monument item 1`] = `"Near historical monument"`;
-
-exports[`EntityWrapper value when the path stops at an array index should return historical monument item when using array paths 1`] = `"Near historical monument"`;
-
-exports[`EntityWrapper value when the path stops at an array index should return historical monument item when using array paths with integer index 1`] = `"Near historical monument"`;

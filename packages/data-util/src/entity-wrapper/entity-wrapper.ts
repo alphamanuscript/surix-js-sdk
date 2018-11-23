@@ -1,5 +1,5 @@
 import { ApiEntity, AuthContext, FieldPathArray } from '../types';
-import { toFieldPathArray, walkEntityPath } from '../util';
+import { dehydrateValue, toFieldPathArray, walkEntityPath } from '../util';
 
 export class EntityWrapper {
   private _entity: ApiEntity;
@@ -36,7 +36,10 @@ export class EntityWrapper {
     return this._value(pathArray);
   }
   _value (fieldPath: FieldPathArray): any {
-    return walkEntityPath(this._entity, fieldPath);
+    const field = walkEntityPath(this._entity, fieldPath);
+    if (field) {
+      return dehydrateValue(field.value, field.type);
+    }
   }
     
 }

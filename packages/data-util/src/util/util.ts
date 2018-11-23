@@ -12,7 +12,7 @@ type WalkFieldArg = TypeValuePair | Field;
 type WalkFieldReturn = TypeValuePair | Field | undefined;
 
 export function toFieldPathArray (fieldPath: string): FieldPathArray {
-  return fieldPath.split('.');
+  return fieldPath ? fieldPath.split('.') : [];
 }
 
 export function walkEntityPath (entity: ApiEntity, path: FieldPathArray): WalkFieldReturn {

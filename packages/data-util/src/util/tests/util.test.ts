@@ -1,6 +1,6 @@
 import * as util from '../util';
 
-import { Field, ObjectValue, ApiEntity } from '../../types';
+import { ApiEntity, Field, ObjectValue } from '../../types';
 
 describe('util', () => {
   describe('makeField', () => {

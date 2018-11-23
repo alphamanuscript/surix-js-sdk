@@ -71,19 +71,21 @@ describe('EntityWrapper', () => {
   });
 
   describe('value', () => {
-    it('should return the plain value at the specified key path', () => {
-      expect(wrapped.value('title')).toBe(entity.data.title.value);
-    });
-    it('should return the plain object at the specified key path', () => {
-      expect(wrapped.value('address')).toMatchSnapshot();
-    });
-    it('should return the plain array at the specified key path', () => {
-      expect(wrapped.value('misc')).toMatchSnapshot();
-    });
-    it('should call util.walkEntityPath to get value at key path', () => {
-      const spy = jest.spyOn(util, 'walkEntityPath');
-      wrapped.value(['misc', 2]);
-      expect(spy.mock.calls).toMatchSnapshot();
+    describe('when path is provided', () => {
+      it('should find the field using util.walkEntityPath on the raw entity', () => {
+        const spy = jest.spyOn(util, 'walkEntityPath');
+        wrapped.value(['address', 'landmarks']);
+        expect(spy.mock.calls).toMatchSnapshot();
+      });
+      it('should convert the field to plain object using util.dehydrateValue', () => {
+        const spy = jest.spyOn(util, 'dehydrateValue');
+        wrapped.value(['address', 'landmarks']);
+        expect(spy.mock.calls).toMatchSnapshot();
+      });
+      it('should return the dehydrated plain value', () => {
+        const res = wrapped.value(['address', 'landmarks']);
+        expect(res).toMatchSnapshot();
+      });
     });
     describe('when string path is provided', () => {
       it('should split string path to array', () => {
@@ -93,51 +95,31 @@ describe('EntityWrapper', () => {
         wrapped.value(stringPath);
         expect(spy).toHaveBeenCalledWith(entity, arrayPath);
       });
-    });
-
-    describe('dotted field paths', () => {
-      it('should support dot notation for nested fields', () => {
-        expect(wrapped.value('address.landmarks')).toMatchSnapshot();
+      it('should turn empty string to empty array', () => {
+        const spy = jest.spyOn(util, 'walkEntityPath');
+        wrapped.value('');
+        expect(spy).toHaveBeenCalledWith(entity, []);
+      });
+      it('should turn non-dotted string as a single key array', () => {
+        const spy = jest.spyOn(util, 'walkEntityPath');
+        wrapped.value('address');
+        expect(spy).toHaveBeenCalledWith(entity, ['address']);
+      });
+      it('should return the same result as with an array path', () => {
+        const res = wrapped.value('address.landmarks');
+        expect(res).toMatchSnapshot();
       });
     });
-    describe('array field paths', () => {
-      it('should support array-based paths', () => {
-        expect(wrapped.value(['address', 'city'])).toEqual('Nairobi');
-      });
-      it('should support singleton arrays', () => {
-        expect(wrapped.value(['title'])).toEqual(entity.data.title.value);
+    describe('when the key path cannot be matched', () => {
+      it('should return undefined', () => {
+        const res = wrapped.value('unknown.path');
+        expect(res).toBeUndefined();
       });
     });
-    describe('when the path is empty string', () => {
-      it('should return entity data as plain dehydrated object', () => {
-        expect(wrapped.value('')).toMatchSnapshot();
-      });
-    });
-    describe('when the path is empty array', () => {
-      it('should return entity data as plain dehydrated object', () => {
-        expect(wrapped.value([])).toMatchSnapshot();
-      });
-    });
-    describe('when the path stops at an array index', () => {
-      it('should return historical monument item', () => {
-        expect(wrapped.value('address.landmarks.0')).toMatchSnapshot();
-      });
-      it('should return historical monument item when using array paths', () => {
-        expect(wrapped.value(['address', 'landmarks', '0'])).toMatchSnapshot();
-      });
-      it('should return historical monument item when using array paths with integer index', () => {
-        expect(wrapped.value(['address', 'landmarks', 0])).toMatchSnapshot();
-      });
-    });
-    describe('when the path goes through an array index', () => {
-      it('should return bar', () => {
-        expect(wrapped.value('misc.2.foo')).toMatchSnapshot();
-      });
-      it('should return bar when using array paths', () => {
-        expect(wrapped.value(['misc', '2', 'foo'])).toMatchSnapshot();
-      });
-      it('should return bar when using array paths with integer index', () => {
-        expect(wrapped.value(['misc', 2, 'foo'])).toMatchSnapshot();
+    describe('when the path is empty', () => {
+      it('should return undefined', () => {
+        const res = wrapped.value('');
+        expect(res).toBeUndefined();
       });
     });
   });
