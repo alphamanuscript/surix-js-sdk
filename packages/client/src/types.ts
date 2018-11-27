@@ -8,7 +8,7 @@ export interface Project {
 export interface ProjectDatabase {
   get(id: string): Promise<EntityWrapper>;
   query(query: Query): Promise<EntityWrapper[]>;
-  getTags(): Promise<TagList[]>;
+  getTags(): Promise<TagList>;
 }
 
 export interface ProjectFiles {
@@ -28,7 +28,7 @@ export interface ApiFile {
   status: 'failed' | 'ready' | 'pending';
   public: boolean;
   downloadUrl: string;
-  tags: TagList[];
+  tags: string[];
 }
 
 export interface TagListItem {

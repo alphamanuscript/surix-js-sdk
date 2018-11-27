@@ -13,8 +13,8 @@ export function getProjectDb (projectId: string, apiClient: AxiosInstance): Proj
       const entities = res.data;
       return entities.map(entity => new EntityWrapper(entity));
     },
-    async getTags (): Promise<TagList[]> {
-      const res = await apiClient.get<TagList[]>(`/projects/${projectId}/tags`);
+    async getTags (): Promise<TagList> {
+      const res = await apiClient.get<TagList>(`/projects/${projectId}/tags`);
       return res.data;
     }
   };
