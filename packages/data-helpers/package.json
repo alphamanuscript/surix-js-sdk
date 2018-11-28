@@ -24,7 +24,6 @@
   "author": "Alpha Manuscript <surix@manuscript.live> (https://surix.co)",
   "license": "MIT",
   "dependencies": {
-    "@surix/data-helpers": "^0.3.0"
   },
   "devDependencies": {
     "@types/jest": "^23.3.9",
