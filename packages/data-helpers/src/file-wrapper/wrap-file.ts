@@ -5,7 +5,10 @@ export function wrapFile (file: ApiFile): WrappedFile {
     ...file,
     id: file._id,
     createdAt: new Date(file.createdAt),
-    updatedAt: new Date(file.updatedAt)
+    updatedAt: new Date(file.updatedAt),
+    get rawFile (): ApiFile {
+      return file;
+    }
   };
 }
 

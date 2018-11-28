@@ -128,4 +128,5 @@ export interface WrappedFile {
     createdBy: AuthContext;
     createdAt: Date;
     updatedAt: Date;
+    rawFile: ApiFile;
 }

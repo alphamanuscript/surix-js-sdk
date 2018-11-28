@@ -1,3 +1,16 @@
-export { wrapEntity, wrapEntityArray } from './entity-wrapper';
+export {
+  wrapEntity,
+  wrapEntityArray,
+} from './entity-wrapper';
 
-export { ApiEntity, ApiFile, WrappedEntity, WrappedFile } from './types';
+export {
+  wrapFile,
+  wrapFileArray
+} from './file-wrapper';
+
+export {
+  ApiEntity,
+  ApiFile,
+  WrappedEntity,
+  WrappedFile
+} from './types';
