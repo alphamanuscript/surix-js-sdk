@@ -1,7 +1,7 @@
 import * as dataHelpers from '@surix/data-helpers';
 import { AxiosInstance } from 'axios';
 import * as api from '../../api';
-import { getProjectTags } from '../tags';
+import { getProjectApi } from '../project';
 
 describe('Project tags', () => {
   describe('list', () => {
@@ -15,8 +15,8 @@ describe('Project tags', () => {
       jest.spyOn(apiClient, 'get').mockReturnValue(
         Promise.resolve({ data: tags })
       );
-      const db = getProjectTags('project1', apiClient);
-      return db.list();
+      const project = getProjectApi('project1', apiClient);
+      return project.tags.list();
     }
     it('should call projects/:pid/tags endpoint', async () => {
       await callMockedList();

@@ -1,7 +1,7 @@
 import * as dataHelpers from '@surix/data-helpers';
 import { AxiosInstance } from 'axios';
 import * as api from '../../api';
-import { getProjectFiles } from '../files';
+import { getProjectApi } from '../project';
 
 describe('Project Files', () => {
   let apiFiles: dataHelpers.ApiFile[];
@@ -42,15 +42,14 @@ describe('Project Files', () => {
 
   describe('get', () => {
     let apiClient: AxiosInstance;
-    async function callMockedGet (): Promise<dataHelpers.WrappedFile> {
+    function callMockedGet (): Promise<dataHelpers.WrappedFile> {
       apiClient = api.getApiClient('http://baseurl');
       jest.spyOn(apiClient, 'get').mockReturnValue(
         Promise.resolve({ data: apiFiles[0] })
       );
       jest.spyOn(dataHelpers, 'wrapFile');
-      const db = getProjectFiles('project1', apiClient);
-      const file = await db.get('f1');
-      return file;
+      const project = getProjectApi('project1', apiClient);
+      return project.files.get('f1');
     }
     it('should call the GET /project/:pid/files/:id endpoint', async () => {
       await callMockedGet();
@@ -71,8 +70,8 @@ describe('Project Files', () => {
         Promise.resolve({ data: apiFiles })
       );
       jest.spyOn(dataHelpers, 'wrapFileArray');
-      const db = getProjectFiles('project1', apiClient);
-      return db.list();
+      const project = getProjectApi('project1', apiClient);
+      return project.files.list();
     }
     it('should call the GET /project/:pid/files endpoint', async () => {
       await callMockedList();

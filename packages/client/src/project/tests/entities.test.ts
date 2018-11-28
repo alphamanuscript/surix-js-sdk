@@ -1,7 +1,7 @@
 import * as dataHelpers from '@surix/data-helpers';
 import { AxiosInstance } from 'axios';
 import * as api from '../../api';
-import { getProjectEntities } from '../entities';
+import { getProjectApi } from '../project';
 
 import { Query } from '../../types';
 
@@ -44,8 +44,8 @@ describe('Project Entities', () => {
       apiClient = api.getApiClient('http://baseurl');
       jest.spyOn(apiClient, 'get').mockReturnValue(Promise.resolve({ data: apiEntities[0] }));
       jest.spyOn(dataHelpers, 'wrapEntity');
-      const db = getProjectEntities('project1', apiClient);
-      const entity = await db.get('e1');
+      const project = getProjectApi('project1', apiClient);
+      const entity = await project.entities.get('e1');
       return entity;
     }
     it('should call the GET /project/:pid/entities/:id endpoint', async () => {
@@ -64,8 +64,8 @@ describe('Project Entities', () => {
       apiClient = api.getApiClient('http://baseurl');
       jest.spyOn(apiClient, 'post').mockReturnValue(Promise.resolve({ data: apiEntities }));
       jest.spyOn(dataHelpers, 'wrapEntityArray');
-      const db = getProjectEntities('project1', apiClient);
-      const entities = await db.query(query);
+      const project = getProjectApi('project1', apiClient);
+      const entities = await project.entities.query(query);
       return entities;
     }
     it('should call the GET /project/:pid/entities/query endpoint with query', async () => {
