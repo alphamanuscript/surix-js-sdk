@@ -1,0 +1,81 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Project Entities get should return the entity transformed to WrappedEntity 1`] = `
+t {
+  "_entity": Object {
+    "_id": "e1",
+    "createdAt": "2017-02-22T09:19:33.885Z",
+    "createdBy": Object {
+      "_id": "u1",
+      "type": "user",
+    },
+    "data": Object {
+      "name": Object {
+        "label": "Label",
+        "name": "name",
+        "type": "text",
+        "value": "Foo",
+      },
+    },
+    "tags": Array [
+      "t1",
+    ],
+    "updatedAt": "2018-10-22T09:19:33.885Z",
+  },
+  "createdAt": 2017-02-22T09:19:33.885Z,
+  "updatedAt": 2018-10-22T09:19:33.885Z,
+}
+`;
+
+exports[`Project Entities query should return the entities transformed to array of WrappedEntity 1`] = `
+Array [
+  t {
+    "_entity": Object {
+      "_id": "e1",
+      "createdAt": "2017-02-22T09:19:33.885Z",
+      "createdBy": Object {
+        "_id": "u1",
+        "type": "user",
+      },
+      "data": Object {
+        "name": Object {
+          "label": "Label",
+          "name": "name",
+          "type": "text",
+          "value": "Foo",
+        },
+      },
+      "tags": Array [
+        "t1",
+      ],
+      "updatedAt": "2018-10-22T09:19:33.885Z",
+    },
+    "createdAt": 2017-02-22T09:19:33.885Z,
+    "updatedAt": 2018-10-22T09:19:33.885Z,
+  },
+  t {
+    "_entity": Object {
+      "_id": "e2",
+      "createdAt": "2017-02-23T09:19:33.885Z",
+      "createdBy": Object {
+        "_id": "u2",
+        "type": "user",
+      },
+      "data": Object {
+        "name": Object {
+          "label": "Label",
+          "name": "name",
+          "type": "text",
+          "value": "Bar",
+        },
+      },
+      "tags": Array [
+        "t2",
+      ],
+      "updatedAt": "2018-10-23T09:19:33.885Z",
+    },
+    "createdAt": 2017-02-23T09:19:33.885Z,
+    "updatedAt": 2018-10-23T09:19:33.885Z,
+  },
+]
+`;

@@ -1,15 +1,20 @@
+import {
+  ApiFile,
+  wrapFile,
+  wrapFileArray,
+  WrappedFile } from '@surix/data-helpers';
 import { AxiosInstance } from 'axios';
-import { ApiFile, ProjectFiles } from '../types';
+import { ProjectFiles} from '../types';
 
 export function getProjectFiles (projectId: string, apiClient: AxiosInstance): ProjectFiles {
   return {
-    async get (fileId: string): Promise<ApiFile> {
+    async get (fileId: string): Promise<WrappedFile> {
       const res = await apiClient.get<ApiFile>(`/projects/${projectId}/files/${fileId}`);
-      return res.data;
+      return wrapFile(res.data);
     },
-    async list (): Promise<ApiFile[]> {
+    async list (): Promise<WrappedFile[]> {
       const res = await apiClient.get<ApiFile[]>(`/projects/${projectId}/files`);
-      return res.data;
+      return wrapFileArray(res.data);
     }
   };
 }

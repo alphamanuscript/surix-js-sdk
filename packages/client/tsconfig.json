@@ -1,0 +1,12 @@
+{
+    "extends": "../../tsconfig.base.json",
+    "compilerOptions": {
+        "outDir": "dist",
+        "strictFunctionTypes": true,
+        "strictNullChecks": true
+    },
+    "exclude": [
+        "dist/**/*",
+        "**/*.test.ts"
+    ]
+}

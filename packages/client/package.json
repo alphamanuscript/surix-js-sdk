@@ -13,8 +13,7 @@
   "license": "ISC",
   "main": "dist/client.js",
   "directories": {
-    "lib": "src",
-    "test": "jest"
+    "lib": "src"
   },
   "files": [
     "lib"
@@ -24,7 +23,8 @@
     "url": "git+https://github.com/alphamanuscript/surix-js-sdk.git"
   },
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "test:watch": "jest --watch"
   },
   "bugs": {
     "url": "https://github.com/alphamanuscript/surix-js-sdk/issues"

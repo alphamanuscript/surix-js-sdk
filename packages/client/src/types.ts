@@ -1,4 +1,4 @@
-import { EntityWrapper } from '@surix/data-helpers';
+import { WrappedEntity, WrappedFile } from '@surix/data-helpers';
 
 export interface Project {
   entities: ProjectEntities;
@@ -7,13 +7,13 @@ export interface Project {
 }
 
 export interface ProjectEntities {
-  get(id: string): Promise<EntityWrapper>;
-  query(query: Query): Promise<EntityWrapper[]>;
+  get(id: string): Promise<WrappedEntity>;
+  query(query?: Query): Promise<WrappedEntity[]>;
 }
 
 export interface ProjectFiles {
-  get(id: string): Promise<ApiFile>;
-  list(): Promise<ApiFile[]>;
+  get(id: string): Promise<WrappedFile>;
+  list(): Promise<WrappedFile[]>;
 }
 
 export interface ProjectTags {
@@ -25,14 +25,6 @@ export interface Query {
   skip?: number;
   limit?: number;
   query?: object;
-}
-
-export interface ApiFile {
-  name: string;
-  status: 'failed' | 'ready' | 'pending';
-  public: boolean;
-  downloadUrl: string;
-  tags: string[];
 }
 
 export interface TagListItem {
