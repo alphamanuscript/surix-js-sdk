@@ -50,12 +50,34 @@ export type FieldOrValuePair = Field | TypeValuePair;
 export type NullableFieldOrValuePair = FieldOrValuePair | undefined;
 
 export interface WrappedEntity {
+    /**
+     * unique id of the entity
+     */
     _id: string;
+    /**
+     * unique id of the entity
+     * @alias _id
+     */
     id: string;
+    /**
+     * when the entity was created
+     */
     createdAt: Date;
+    /**
+     * when the entity was last updated
+     */
     updatedAt: Date;
+    /**
+     * user or app that created the entity;
+     */
     createdBy: AuthContext;
+    /**
+     * list of tags the entity belongs to
+     */
     tags: string[];
+    /**
+     * the origina entity object from the API
+     */
     rawEntity: ApiEntity;
     /**
      * returns the plain value of the field at the specified path
@@ -114,19 +136,69 @@ export interface ApiFile {
 }
 
 export interface WrappedFile {
+    /**
+     * unique id of the file
+     */
     _id: string;
+    /**
+     * unique id of the file
+     * @alias _id
+     */
     id: string;
+    /**
+     * display name of the file
+     */
     name: string;
+    /**
+     * filename of the file
+     */
     filename: string;
+    /**
+     * status of the file, one of 
+     * - 'pending': file upload not yet complete
+     * - 'failed': file upload failed
+     * - 'ready': upload complete, file can be downloaded
+     */
     status: 'pending' | 'failed' | 'ready';
+    /**
+     * size of the file contents in bytes
+     */
     size: number;
+    /**
+     * MIME type of the file
+     */
     mimeType: string;
+    /**
+     * whether the file is allowed to be downloaded by the general public,
+     * if set to true, the download url is fixed
+     */
     public: boolean;
+    /**
+     * list of tags the file belongs to
+     */
     tags: string[];
+    /**
+     * url to use when uploading the file contents
+     */
     uploadUrl: string;
+    /**
+     * url to use for downloading the file
+     */
     downloadUrl: string;
+    /**
+     * app or user that created the file
+     */
     createdBy: AuthContext;
+    /**
+     * when the file was created
+     */
     createdAt: Date;
+    /**
+     * when the file was last updated
+     */
     updatedAt: Date;
+    /**
+     * the original file object from the API
+     */
     rawFile: ApiFile;
 }
