@@ -1,1 +1,1 @@
-export { EntityWrapper, wrapEntity, wrapEntityArray } from './entity-wrapper';
+export { wrapEntity, wrapEntityArray } from './entity-wrapper';

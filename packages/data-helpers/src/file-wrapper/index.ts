@@ -1,0 +1,1 @@
+export { wrapFile, wrapFileArray } from './wrap-file';
