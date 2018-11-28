@@ -1,19 +1,23 @@
 import { EntityWrapper } from '@surix/data-helpers';
 
 export interface Project {
-  db: ProjectDatabase;
+  entities: ProjectEntities;
   files: ProjectFiles;
+  tags: ProjectTags;
 }
 
-export interface ProjectDatabase {
+export interface ProjectEntities {
   get(id: string): Promise<EntityWrapper>;
   query(query: Query): Promise<EntityWrapper[]>;
-  getTags(): Promise<TagList>;
 }
 
 export interface ProjectFiles {
   get(id: string): Promise<ApiFile>;
   list(): Promise<ApiFile[]>;
+}
+
+export interface ProjectTags {
+  list(): Promise<TagList>;
 }
 
 export interface Query {

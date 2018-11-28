@@ -1,8 +1,8 @@
 import { ApiEntity, EntityWrapper } from '@surix/data-helpers';
 import { AxiosInstance } from 'axios';
-import { ProjectDatabase, Query, TagList } from '../types';
+import { ProjectEntities, Query, TagList } from '../types';
 
-export function getProjectDb (projectId: string, apiClient: AxiosInstance): ProjectDatabase {
+export function getProjectEntities (projectId: string, apiClient: AxiosInstance): ProjectEntities {
   return {
     async get (entityId: string): Promise<EntityWrapper> {
       const res = await apiClient.get<ApiEntity>(`/projects/${projectId}/entities/${entityId}`);
@@ -12,10 +12,6 @@ export function getProjectDb (projectId: string, apiClient: AxiosInstance): Proj
       const res = await apiClient.post<ApiEntity[]>(`/projects/${projectId}/entities/query`, query);
       const entities = res.data;
       return entities.map(entity => new EntityWrapper(entity));
-    },
-    async getTags (): Promise<TagList> {
-      const res = await apiClient.get<TagList>(`/projects/${projectId}/tags`);
-      return res.data;
     }
   };
 }
