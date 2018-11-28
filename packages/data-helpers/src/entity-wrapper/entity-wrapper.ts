@@ -12,11 +12,23 @@ export class EntityWrapper {
   private _dataCache: object;
 
   /**
+   * date when the entity was created
+   */
+  createdAt: Date;
+
+  /**
+   * date when the entity was last updated
+   */
+  updatedAt: Date;
+
+  /**
    * 
    * @param rawEntity raw entity from the Surix API
    */
   constructor (rawEntity: ApiEntity) {
     this._entity = rawEntity;
+    this.createdAt = new Date(this._entity.createdAt);
+    this.updatedAt = new Date(this._entity.updatedAt);
   }
 
   /**
@@ -53,20 +65,6 @@ export class EntityWrapper {
    */
   get createdBy (): AuthContext {
     return this._entity.createdBy;
-  }
-
-  /**
-   * date when the entity was created
-   */
-  get createdAt (): Date {
-    return new Date(this._entity.createdAt);
-  }
-
-  /**
-   * date when the entity was last updated
-   */
-  get updatedAt (): Date {
-    return new Date(this._entity.updatedAt);
   }
 
   /**
@@ -136,4 +134,12 @@ export class EntityWrapper {
     }
     return this._dataCache;
   }
+}
+
+export function wrapEntity (entity: ApiEntity): EntityWrapper {
+  return new EntityWrapper(entity);
+}
+
+export function wrapEntityArray (entities: ApiEntity[]): EntityWrapper[] {
+  return entities.map(wrapEntity);
 }

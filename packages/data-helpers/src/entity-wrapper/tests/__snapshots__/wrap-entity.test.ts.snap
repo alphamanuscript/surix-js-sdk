@@ -1,0 +1,84 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`wrapEntity should transform entity into an EntityWrapper 1`] = `
+EntityWrapper {
+  "_entity": Object {
+    "_id": "ent1",
+    "createdAt": "2017-02-22T09:19:33.885Z",
+    "createdBy": Object {
+      "_id": "u1",
+      "type": "user",
+    },
+    "data": Object {
+      "name": Object {
+        "label": "Name",
+        "name": "name",
+        "type": "text",
+        "value": "Foo",
+      },
+    },
+    "tags": Array [
+      "t1",
+      "t2",
+    ],
+    "updatedAt": "2018-10-22T09:19:33.885Z",
+  },
+  "createdAt": 2017-02-22T09:19:33.885Z,
+  "updatedAt": 2018-10-22T09:19:33.885Z,
+}
+`;
+
+exports[`wrapEntityArray should transform an array of entities into an array of EntityWrapper 1`] = `
+Array [
+  EntityWrapper {
+    "_entity": Object {
+      "_id": "ent1",
+      "createdAt": "2017-02-22T09:19:33.885Z",
+      "createdBy": Object {
+        "_id": "u1",
+        "type": "user",
+      },
+      "data": Object {
+        "name": Object {
+          "label": "Name",
+          "name": "name",
+          "type": "text",
+          "value": "Foo",
+        },
+      },
+      "tags": Array [
+        "t1",
+        "t2",
+      ],
+      "updatedAt": "2018-10-22T09:19:33.885Z",
+    },
+    "createdAt": 2017-02-22T09:19:33.885Z,
+    "updatedAt": 2018-10-22T09:19:33.885Z,
+  },
+  EntityWrapper {
+    "_entity": Object {
+      "_id": "ent2",
+      "createdAt": "2017-02-23T09:19:33.885Z",
+      "createdBy": Object {
+        "_id": "u2",
+        "type": "user",
+      },
+      "data": Object {
+        "name": Object {
+          "label": "Name",
+          "name": "name",
+          "type": "text",
+          "value": "Bar",
+        },
+      },
+      "tags": Array [
+        "t1",
+        "t2",
+      ],
+      "updatedAt": "2018-10-23T09:19:33.885Z",
+    },
+    "createdAt": 2017-02-23T09:19:33.885Z,
+    "updatedAt": 2018-10-23T09:19:33.885Z,
+  },
+]
+`;
