@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Project Entities get should return the entity transformed to WrappedEntity 1`] = `
-t {
+EntityWrapper {
   "_entity": Object {
     "_id": "e1",
     "createdAt": "2017-02-22T09:19:33.885Z",
@@ -29,7 +29,7 @@ t {
 
 exports[`Project Entities query should return the entities transformed to array of WrappedEntity 1`] = `
 Array [
-  t {
+  EntityWrapper {
     "_entity": Object {
       "_id": "e1",
       "createdAt": "2017-02-22T09:19:33.885Z",
@@ -53,7 +53,7 @@ Array [
     "createdAt": 2017-02-22T09:19:33.885Z,
     "updatedAt": 2018-10-22T09:19:33.885Z,
   },
-  t {
+  EntityWrapper {
     "_entity": Object {
       "_id": "e2",
       "createdAt": "2017-02-23T09:19:33.885Z",
