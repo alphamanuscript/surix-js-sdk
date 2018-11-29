@@ -1,14 +1,15 @@
 {
   "name": "@surix/client",
   "version": "0.5.0",
-  "private": true,
   "description": "Surix API Client",
   "keywords": [
     "surix",
     "client",
-    "wrapper"
+    "wrapper",
+    "api",
+    "rest"
   ],
-  "author": "Clément Habinshuti <hello@habbes.xyz>",
+  "author": "Alpha Manuscript <surix@manuscript.live>",
   "homepage": "https://github.com/alphamanuscript/surix-js-sdk#readme",
   "license": "ISC",
   "main": "dist/index.js",
@@ -48,6 +49,7 @@
     ]
   },
   "devDependencies": {
+    "@types/axios": "^0.14.0",
     "@types/jest": "^23.3.9",
     "jest": "^23.6.0",
     "ts-jest": "^23.10.5",
@@ -59,7 +61,6 @@
   },
   "dependencies": {
     "@surix/data-helpers": "^0.5.0",
-    "@types/axios": "^0.14.0",
     "axios": "^0.18.0"
   }
 }
