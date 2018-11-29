@@ -12,6 +12,7 @@
   "homepage": "https://github.com/alphamanuscript/surix-js-sdk#readme",
   "license": "ISC",
   "main": "dist/client.js",
+  "types": "dist/index.d.ts",
   "directories": {
     "lib": "src"
   },
@@ -23,14 +24,16 @@
     "url": "git+https://github.com/alphamanuscript/surix-js-sdk.git"
   },
   "scripts": {
-    "test": "jest",
-    "test:watch": "jest --watch"
+    "test": "jest src",
+    "test:watch": "jest --watch src",
+    "build": "rm -rf dist && webpack --mode=production",
+    "prepublish": "yarn test && yarn build"
   },
   "bugs": {
     "url": "https://github.com/alphamanuscript/surix-js-sdk/issues"
   },
   "jest": {
-    "rootDir": "src",
+    "rootDir": ".",
     "transform": {
       "^.+\\.tsx?$": "ts-jest"
     },

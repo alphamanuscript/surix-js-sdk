@@ -9,7 +9,7 @@ export interface ClientOptions {
   environment?: 'production' | 'staging' ;
 }
 
-export class SurixClient {
+export class Client {
   private _apiClient;
 
   constructor (opts?: ClientOptions) {

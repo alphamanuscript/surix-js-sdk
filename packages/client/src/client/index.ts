@@ -1,1 +1,1 @@
-export { SurixClient } from './client';
+export { Client } from './client';
