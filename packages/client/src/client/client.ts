@@ -3,7 +3,7 @@ import { getProjectApi } from '../project';
 import { Project } from '../types';
 
 export const PRODUCTION_URL = 'https://api.surix.co';
-export const STAGING_URL = 'https://surix-staging.firebaseapp.com';
+export const STAGING_URL = 'https://surix-staging.herokuapp.com';
 
 export interface ClientOptions {
   environment?: 'production' | 'staging' ;

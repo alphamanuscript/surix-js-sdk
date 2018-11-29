@@ -2,12 +2,17 @@
   "name": "@surix/data-helpers",
   "version": "0.5.0",
   "description": "Utilities for making it easy to work with Surix data",
-  "main": "dist/data-helpers.js",
+  "main": "dist/index.js",
   "typings": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "test": "jest",
     "lint": "tslint -p tsconfig.json -c tslint.json 'src/**/*.ts'",
-    "build": "rm -rf dist && webpack --mode=production",
+    "build": "rm -rf dist && yarn build:node && yarn build:umd",
+    "build:node": "tsc",
+    "build:umd": "webpack --mode=production",
     "prepublish": "yarn test && yarn build"
   },
   "jest": {

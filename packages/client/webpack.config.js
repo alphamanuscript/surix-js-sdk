@@ -1,7 +1,10 @@
 const path = require('path');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
-  entry: './src/index.ts',
+  entry: {
+    'client.min': './src/index.ts'
+  },
   module: {
     rules: [
       {
@@ -14,8 +17,17 @@ module.exports = {
   resolve: {
     extensions: [ '.ts', '.js' ]
   },
+  devtool: 'source-map',
+  optimization: {
+    minimize: true,
+    minimizer: [
+      new UglifyJsPlugin({
+        include: /\.min\.js$/
+      })
+    ]
+  },
   output: {
-    filename: 'client.js',
+    filename: '[name].js',
     path: path.resolve(__dirname, 'dist'),
     libraryTarget: 'umd',
     library: 'Surix'
