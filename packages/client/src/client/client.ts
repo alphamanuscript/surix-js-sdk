@@ -2,8 +2,8 @@ import { getApiClient } from '../api';
 import { getProjectApi } from '../project';
 import { Project } from '../types';
 
-const PRODUCTION_URL = 'https://api.surix.co';
-const STAGING_URL = 'https://surix-staging.firebaseapp.com';
+export const PRODUCTION_URL = 'https://api.surix.co';
+export const STAGING_URL = 'https://surix-staging.firebaseapp.com';
 
 export interface ClientOptions {
   environment?: 'production' | 'staging' ;
