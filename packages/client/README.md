@@ -5,7 +5,6 @@
 ```javascript
 const { Client } = require('@surix/client');
 
-
 // OR
 
 import { Client } from '@surix/client';
@@ -15,6 +14,12 @@ Create Client instance:
 
 ```javascript
 const client = new Client();
+```
+
+Create Client for the staging server
+
+```javascript
+const client = new Client({ environment: 'staging' });
 ```
 
 Select project to work with:
@@ -65,7 +70,7 @@ entities.forEach((entity) => {
 
 ### Files
 
-#### `projects.files.get(id: string)`
+#### `project.files.get(id: string)`
 
 Fetches a file by ID.
 
