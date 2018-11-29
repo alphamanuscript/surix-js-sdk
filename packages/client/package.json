@@ -1,6 +1,6 @@
 {
   "name": "@surix/client",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "Surix API Client",
   "keywords": [
     "surix",
@@ -60,7 +60,7 @@
     "webpack-cli": "^3.1.2"
   },
   "dependencies": {
-    "@surix/data-helpers": "^0.5.0",
+    "@surix/data-helpers": "^0.6.0",
     "axios": "^0.18.0"
   }
 }
