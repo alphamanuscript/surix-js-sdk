@@ -22,6 +22,12 @@ Create Client for the staging server
 const client = new Client({ environment: 'staging' });
 ```
 
+Use custom base URL
+
+```javascript
+const client = new Client({ baseUrl: 'https://mydomain.com/api' });
+```
+
 Select project to work with:
 
 ```javascript

@@ -8,13 +8,22 @@ describe('Client', () => {
       const spy = jest.spyOn(api, 'getApiClient');
       new Client();
       expect(spy.mock.calls).toMatchSnapshot();
+      spy.mockRestore();
     });
     describe('when environment is not set to production', () => {
       it('should create http client based on staging url', () => {
         const spy = jest.spyOn(api, 'getApiClient');
         new Client({ environment: 'staging' });
         expect(spy.mock.calls).toMatchSnapshot();
+        spy.mockRestore();
       });
+    });
+    it('should override baseUrl if baseUrl option is provided', () => {
+      const spy = jest.spyOn(api, 'getApiClient');
+      const baseUrl = 'http://mydomain.com/api';
+      new Client({ baseUrl });
+      expect(spy.mock.calls).toMatchSnapshot();
+      spy.mockRestore();
     });
   });
 

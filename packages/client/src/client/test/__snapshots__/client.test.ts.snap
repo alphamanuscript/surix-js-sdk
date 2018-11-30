@@ -3,7 +3,15 @@
 exports[`Client new instance should create http client based on production Surix API url 1`] = `
 Array [
   Array [
-    "https://api.surix.co",
+    "https://api.surix.co/api",
+  ],
+]
+`;
+
+exports[`Client new instance should override baseUrl if baseUrl option is provided 1`] = `
+Array [
+  Array [
+    "http://mydomain.com/api",
   ],
 ]
 `;
@@ -11,10 +19,7 @@ Array [
 exports[`Client new instance when environment is not set to production should create http client based on staging url 1`] = `
 Array [
   Array [
-    "https://api.surix.co",
-  ],
-  Array [
-    "https://surix-staging.herokuapp.com",
+    "https://surix-staging.herokuapp.com/api",
   ],
 ]
 `;
