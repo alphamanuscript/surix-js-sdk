@@ -26,8 +26,9 @@ export class Client {
   }
 
   async authenticate(credentials: Credentials) {
-    const authDetails: AuthKeyDetails = await auth(credentials, this._apiClient)
-    this._apiClient.defaults.headers['Authorization'] = authDetails.accessToken._id
+    const authDetails: AuthKeyDetails = await auth(credentials, this._apiClient);
+    this._apiClient.defaults.headers['Authorization'] = authDetails.accessToken._id;
+    return this;
   }
 
   project (id: string): Project {
