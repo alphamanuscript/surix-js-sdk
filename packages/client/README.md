@@ -28,6 +28,21 @@ Use custom base URL
 const client = new Client({ baseUrl: 'https://mydomain.com/api' });
 ```
 
+Authenticate
+
+```javascript
+await client.authenticate({ email: 'me@email.com', password: 'strong password' });
+// Continue using client
+
+// Or
+client.authenticate({
+  email: 'me@email.com',
+  password: 'strong password'
+}).then(authenticatedClient => {
+  // Continue using authenticatedClient
+})
+```
+
 Select project to work with:
 
 ```javascript
