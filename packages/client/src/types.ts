@@ -31,31 +31,4 @@ export interface TagListItem {
   name: string;
 }
 
-export interface Credentials {
-  email: string;
-  password: string
-}
-
-interface Timestamps {
-  createdAt: Date;
-  updatedAt: Date
-}
-
-interface Id {
-  _id: string
-}
-
-interface AccessToken extends Id, Timestamps {
-  user: string;
-  expiryDate: Date
-}
-
-interface User extends Id, Timestamps {
-  email: string
-}
- export interface AuthKeyDetails {
-  accessToken: AccessToken;
-  user: User
-}
-
 export type TagList = TagListItem[];
