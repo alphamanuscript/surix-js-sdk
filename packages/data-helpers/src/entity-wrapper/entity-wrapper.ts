@@ -46,6 +46,10 @@ export class EntityWrapper implements WrappedEntity {
     return this._entity.createdBy;
   }
 
+  get updatedBy (): AuthContext {
+    return this._entity.updatedBy;
+  }
+
   get (fieldPath: string | FieldPathArray, defaultValue?: any): any {
     const pathArray = normalizeFieldPath(fieldPath);
     return this._value(pathArray, defaultValue);
@@ -61,12 +65,6 @@ export class EntityWrapper implements WrappedEntity {
     const field = walkEntityPath(this._entity, pathArray);
     return field ? field.type : defaultType;
   }
-
-  label (fieldPath: string | FieldPathArray, defaultLabel?: string): string|undefined {
-    const pathArray = normalizeFieldPath(fieldPath);
-    const field = walkEntityPath(this._entity, pathArray) as Field;
-    return field && field.label ? field.label : defaultLabel;
-  } 
 
   field (fieldPath: string | FieldPathArray, defaultField?: FieldOrValuePair):
   NullableFieldOrValuePair {
