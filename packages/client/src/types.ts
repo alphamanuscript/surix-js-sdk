@@ -9,6 +9,7 @@ export interface Project {
 export interface ProjectEntities {
   get(id: string): Promise<WrappedEntity>;
   query(query?: Query): Promise<WrappedEntity[]>;
+  create(entity: any): Promise<WrappedEntity>;
 }
 
 export interface ProjectFiles {
