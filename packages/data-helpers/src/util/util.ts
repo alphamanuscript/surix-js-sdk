@@ -77,11 +77,9 @@ export function deflateList (list: ListValue): any[] {
   return list.map(({ type, value }) => deflateValue(value, type));
 }
 
-export function makeField (value: FieldValue, type: FieldType, name: string, label: string): Field {
+export function makeField (value: FieldValue, type: FieldType): Field {
   return {
     value,
-    type,
-    name,
-    label
+    type
   };
 }
