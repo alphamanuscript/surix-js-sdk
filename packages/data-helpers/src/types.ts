@@ -33,8 +33,6 @@ export interface ObjectValue {
 }
 
 export interface Field extends TypeValuePair {
-    name: string;
-    label: string;
 }
 
 export interface TypeValuePair {

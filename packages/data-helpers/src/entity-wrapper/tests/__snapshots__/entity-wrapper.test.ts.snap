@@ -34,8 +34,6 @@ Object {
 
 exports[`EntityWrapper field should return the raw field (list of landmarks) 1`] = `
 Object {
-  "label": "Landmarks",
-  "name": "landmarks",
   "type": "list",
   "value": Array [
     Object {
@@ -48,8 +46,6 @@ Object {
 
 exports[`EntityWrapper field when a default is provided should return the true (list of landmarks) field if the the path is matched 1`] = `
 Object {
-  "label": "Landmarks",
-  "name": "landmarks",
   "type": "list",
   "value": Array [
     Object {
@@ -86,25 +82,17 @@ Array [
       },
       "data": Object {
         "active": Object {
-          "label": "Active",
-          "name": "active",
           "type": "boolean",
           "value": false,
         },
         "address": Object {
-          "label": "Address",
-          "name": "address",
           "type": "object",
           "value": Object {
             "city": Object {
-              "label": "City",
-              "name": "city",
               "type": "text",
               "value": "Nairobi",
             },
             "landmarks": Object {
-              "label": "Landmarks",
-              "name": "landmarks",
               "type": "list",
               "value": Array [
                 Object {
@@ -114,22 +102,16 @@ Array [
               ],
             },
             "street": Object {
-              "label": "Street",
-              "name": "street",
               "type": "text",
               "value": "Some street",
             },
           },
         },
         "count": Object {
-          "label": "Count",
-          "name": "count",
           "type": "number",
           "value": "100",
         },
         "image": Object {
-          "label": "Image",
-          "name": "image",
           "type": "file",
           "value": Object {
             "downloadUrl": "download",
@@ -138,14 +120,10 @@ Array [
           },
         },
         "lastSeen": Object {
-          "label": "Last seen",
-          "name": "lastSeen",
           "type": "datetime",
           "value": "2018-11-22T09:19:33.885Z",
         },
         "misc": Object {
-          "label": "Misc",
-          "name": "misc",
           "type": "list",
           "value": Array [
             Object {
@@ -164,8 +142,6 @@ Array [
               "type": "object",
               "value": Object {
                 "foo": Object {
-                  "label": "Foo",
-                  "name": "foo",
                   "type": "text",
                   "value": "bar",
                 },
@@ -174,8 +150,6 @@ Array [
           ],
         },
         "title": Object {
-          "label": "Title",
-          "name": "title",
           "type": "text",
           "value": "My Title",
         },
@@ -185,6 +159,10 @@ Array [
         "stuff",
       ],
       "updatedAt": "2018-10-22T09:19:33.885Z",
+      "updatedBy": Object {
+        "_id": "user2",
+        "type": "user",
+      },
     },
     Array [
       "address",
