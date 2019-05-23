@@ -43,7 +43,7 @@ describe('Project Files', () => {
   describe('get', () => {
     let apiClient: AxiosInstance;
     function callMockedGet (): Promise<dataHelpers.WrappedFile> {
-      apiClient = api.getApiClient('http://baseurl');
+      apiClient = api.getApiClient('http://baseurl', 'somekey');
       jest.spyOn(apiClient, 'get').mockReturnValue(
         Promise.resolve({ data: apiFiles[0] })
       );
@@ -65,7 +65,7 @@ describe('Project Files', () => {
   describe('list', () => {
     let apiClient: AxiosInstance;
     function callMockedList (): Promise<dataHelpers.WrappedFile[]> {
-      apiClient = api.getApiClient('http://baseurl');
+      apiClient = api.getApiClient('http://baseurl', 'somekey');
       jest.spyOn(apiClient, 'get').mockReturnValue(
         Promise.resolve({ data: apiFiles })
       );

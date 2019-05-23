@@ -4,6 +4,7 @@ exports[`Client new instance should create http client based on production Surix
 Array [
   Array [
     "https://api.surix.co/api",
+    "someid:somesecret",
   ],
 ]
 `;
@@ -12,6 +13,7 @@ exports[`Client new instance should override baseUrl if baseUrl option is provid
 Array [
   Array [
     "http://mydomain.com/api",
+    "someid:somesecret",
   ],
 ]
 `;
@@ -20,6 +22,7 @@ exports[`Client new instance when environment is not set to production should cr
 Array [
   Array [
     "https://surix-staging.herokuapp.com/api",
+    "someid:somesecret",
   ],
 ]
 `;

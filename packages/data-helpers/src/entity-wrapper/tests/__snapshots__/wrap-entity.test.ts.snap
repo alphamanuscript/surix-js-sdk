@@ -11,8 +11,6 @@ EntityWrapper {
     },
     "data": Object {
       "name": Object {
-        "label": "Name",
-        "name": "name",
         "type": "text",
         "value": "Foo",
       },
@@ -22,6 +20,10 @@ EntityWrapper {
       "t2",
     ],
     "updatedAt": "2018-10-22T09:19:33.885Z",
+    "updatedBy": Object {
+      "_id": "u2",
+      "type": "user",
+    },
   },
   "createdAt": 2017-02-22T09:19:33.885Z,
   "updatedAt": 2018-10-22T09:19:33.885Z,
@@ -40,8 +42,6 @@ Array [
       },
       "data": Object {
         "name": Object {
-          "label": "Name",
-          "name": "name",
           "type": "text",
           "value": "Foo",
         },
@@ -51,6 +51,10 @@ Array [
         "t2",
       ],
       "updatedAt": "2018-10-22T09:19:33.885Z",
+      "updatedBy": Object {
+        "_id": "u2",
+        "type": "user",
+      },
     },
     "createdAt": 2017-02-22T09:19:33.885Z,
     "updatedAt": 2018-10-22T09:19:33.885Z,
@@ -65,8 +69,6 @@ Array [
       },
       "data": Object {
         "name": Object {
-          "label": "Name",
-          "name": "name",
           "type": "text",
           "value": "Bar",
         },
@@ -76,6 +78,10 @@ Array [
         "t2",
       ],
       "updatedAt": "2018-10-23T09:19:33.885Z",
+      "updatedBy": Object {
+        "_id": "u3",
+        "type": "user",
+      },
     },
     "createdAt": 2017-02-23T09:19:33.885Z,
     "updatedAt": 2018-10-23T09:19:33.885Z,
