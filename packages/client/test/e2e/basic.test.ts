@@ -7,7 +7,7 @@ describe('Client basic requests', () => {
   let client: Client;
   let project: Project;
   beforeEach(() => {
-    client = new Client({ environment: 'staging' });
+    client = new Client({ environment: 'staging', keyId: 'someid', keySecret: 'somesecret' });
     project = client.project(PROJECT);
   });
 
