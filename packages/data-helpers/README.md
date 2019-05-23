@@ -59,7 +59,6 @@ const codeFromRaw = raw.data.address
 - `wrappedEntity.get(key, defaultValue?)`: returns plain value of the specified field
 - `wrappedEntity.type(key, defaultType?)`: returns type of the specified field
 - `wrappedEntity.field(key, defaultType?)`: returns the raw field with the specified key
-- `wrappedEntity.label(key, defaultLabel?)`: return the label of the specified field
 - `wrappedEntity.data()`: returns the data of the entity as a plain key-value object (without field metadata)
 
 #### properties
@@ -69,4 +68,5 @@ You can access the top-level properties of the entity directly:
 - `wrappedEntity.createdAt`
 - `wrappedEntity.updatedAt`
 - `wrappedEntity.createdBy`
+- `wrappedEntity.updatedBy`
 - `wrappedEntity.rawEntity`: Returns the raw entity from the API
