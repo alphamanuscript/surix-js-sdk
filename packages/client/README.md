@@ -16,32 +16,20 @@ Create Client instance:
 const client = new Client();
 ```
 
-Create Client for the staging server
-
-```javascript
-const client = new Client({ environment: 'staging' });
-```
+Create Client for the server
 
 Use custom base URL
 
 ```javascript
-const client = new Client({ baseUrl: 'https://mydomain.com/api' });
+const client = new Client({ 
+  environment: 'staging', // staging or production
+  baseUrl: 'https://mydomain.com/api', // custom server
+  keyId: 'key id provided by surix',
+  keySecret: 'key secret provided by surix'
+  });
 ```
 
-Authenticate
-
-```javascript
-await client.authenticate({ email: 'me@email.com', password: 'strong password' });
-// Continue using client
-
-// Or
-client.authenticate({
-  email: 'me@email.com',
-  password: 'strong password'
-}).then(authenticatedClient => {
-  // Continue using authenticatedClient
-})
-```
+Note: `keyId` and `keySecret` are provided in the surix dashboard, under account settings.
 
 Select project to work with:
 

@@ -11,7 +11,7 @@ describe('Project tags', () => {
       { name: 'users' }
     ];
     function callMockedList(): Promise<any[]> {
-      apiClient = api.getApiClient('http://baseurl');
+      apiClient = api.getApiClient('http://baseurl', 'somekey');
       jest.spyOn(apiClient, 'get').mockReturnValue(
         Promise.resolve({ data: tags })
       );

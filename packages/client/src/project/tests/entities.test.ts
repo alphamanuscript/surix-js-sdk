@@ -41,7 +41,7 @@ describe('Project Entities', () => {
   describe('get', () => {
     let apiClient: AxiosInstance;
     async function callMockedGet (): Promise<dataHelpers.WrappedEntity> {
-      apiClient = api.getApiClient('http://baseurl');
+      apiClient = api.getApiClient('http://baseurl', 'somekey');
       jest.spyOn(apiClient, 'get').mockReturnValue(Promise.resolve({ data: apiEntities[0] }));
       jest.spyOn(dataHelpers, 'wrapEntity');
       const project = getProjectApi('project1', apiClient);
@@ -61,7 +61,7 @@ describe('Project Entities', () => {
   describe('query', () => {
     let apiClient: AxiosInstance;
     async function callMockedQuery (query?: Query): Promise<dataHelpers.WrappedEntity[]> {
-      apiClient = api.getApiClient('http://baseurl');
+      apiClient = api.getApiClient('http://baseurl', 'somekey');
       jest.spyOn(apiClient, 'post').mockReturnValue(Promise.resolve({ data: apiEntities }));
       jest.spyOn(dataHelpers, 'wrapEntityArray');
       const project = getProjectApi('project1', apiClient);
