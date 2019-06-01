@@ -14,3 +14,7 @@ export {
   WrappedEntity,
   WrappedFile
 } from './types';
+
+export {
+  expandEntity
+} from './expand-entity';
