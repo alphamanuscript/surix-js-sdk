@@ -34,8 +34,6 @@ Object {
 
 exports[`util walkEntityPath should call walkFieldPath with the first field (returns dar field) 1`] = `
 Object {
-  "label": "Dar",
-  "name": "dar",
   "type": "text",
   "value": "dar value",
 }
@@ -43,8 +41,6 @@ Object {
 
 exports[`util walkFieldPath when the start field has type object should return nested field (fizz) at the specified path 1`] = `
 Object {
-  "label": "Fizz",
-  "name": "fizz",
   "type": "text",
   "value": "buzz",
 }
@@ -52,8 +48,6 @@ Object {
 
 exports[`util walkFieldPath when the start field has type object should support array indices as ints (returns dar field) 1`] = `
 Object {
-  "label": "Dar",
-  "name": "dar",
   "type": "text",
   "value": "dar value",
 }
@@ -61,8 +55,6 @@ Object {
 
 exports[`util walkFieldPath when the start field has type object should walk through array indices and return dar field 1`] = `
 Object {
-  "label": "Dar",
-  "name": "dar",
   "type": "text",
   "value": "dar value",
 }
@@ -77,8 +69,6 @@ Object {
 
 exports[`util walkFieldPath when the start field is a list should return walk nested object and return dar field 1`] = `
 Object {
-  "label": "Dar",
-  "name": "dar",
   "type": "text",
   "value": "dar value",
 }

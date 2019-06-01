@@ -3,17 +3,22 @@ import * as projectApi from '../../project';
 import { Client } from '../client';
 
 describe('Client', () => {
+  const authKey = {
+    keyId: 'someid',
+    keySecret: 'somesecret'
+  }
+
   describe('new instance', () => {
     it('should create http client based on production Surix API url', () => {
       const spy = jest.spyOn(api, 'getApiClient');
-      new Client();
+      new Client({ ...authKey });
       expect(spy.mock.calls).toMatchSnapshot();
       spy.mockRestore();
     });
     describe('when environment is not set to production', () => {
       it('should create http client based on staging url', () => {
         const spy = jest.spyOn(api, 'getApiClient');
-        new Client({ environment: 'staging' });
+        new Client({ environment: 'staging', ...authKey });
         expect(spy.mock.calls).toMatchSnapshot();
         spy.mockRestore();
       });
@@ -21,7 +26,7 @@ describe('Client', () => {
     it('should override baseUrl if baseUrl option is provided', () => {
       const spy = jest.spyOn(api, 'getApiClient');
       const baseUrl = 'http://mydomain.com/api';
-      new Client({ baseUrl });
+      new Client({ baseUrl, ...authKey });
       expect(spy.mock.calls).toMatchSnapshot();
       spy.mockRestore();
     });
@@ -32,7 +37,7 @@ describe('Client', () => {
       const apiClient = {};
       jest.spyOn(api, 'getApiClient').mockReturnValue(apiClient);
       jest.spyOn(projectApi, 'getProjectApi');
-      const client = new Client();
+      const client = new Client({ ...authKey });
       client.project('id');
       expect(projectApi.getProjectApi).toHaveBeenCalledWith('id', apiClient);
     });

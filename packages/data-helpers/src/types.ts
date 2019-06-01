@@ -4,6 +4,7 @@ export class ApiEntity {
     updatedAt: string;
     data: ObjectValue;
     createdBy: AuthContext;
+    updatedBy: AuthContext;
     tags: string[];
 }
 
@@ -32,8 +33,6 @@ export interface ObjectValue {
 }
 
 export interface Field extends TypeValuePair {
-    name: string;
-    label: string;
 }
 
 export interface TypeValuePair {
@@ -43,7 +42,7 @@ export interface TypeValuePair {
 
 export interface AuthContext {
     _id: string;
-    type: 'user' | 'app' | 'localapp';
+    type: 'user' | 'app';
 }
 
 export type FieldOrValuePair = Field | TypeValuePair;
@@ -72,6 +71,10 @@ export interface WrappedEntity {
      */
     createdBy: AuthContext;
     /**
+     * user or app that updated the entity;
+     */
+    updatedBy: AuthContext;
+    /**
      * list of tags the entity belongs to
      */
     tags: string[];
@@ -95,14 +98,6 @@ export interface WrappedEntity {
      * @param defaultType the type to return if the entity does not have the field
      */
     type (fieldPath: string | FieldPathArray, defaultType?: FieldType): FieldType|undefined;
-    /**
-     * returns the label of the field with the specified key
-     * @param fieldPath the key of the field, this can be a
-     * dotted string "field.nestedField" or an array ["field", "nestedField"]
-     * the path can include field names as well as array indices
-     * @param defaultLabel the label to return if the field does not exist
-     */
-    label (fieldPath: string | FieldPathArray, defaultLabel?: string): string|undefined;
     /**
      * returns the raw field at the specified key
      * @param fieldPath the key of the field, this can be a

@@ -5,10 +5,8 @@ import { ApiEntity, Field, ObjectValue } from '../../types';
 describe('util', () => {
   describe('makeField', () => {
     it('should create a field based on the give value and metadata', () => {
-      const field = util.makeField('value', 'text', 'name', 'Label');
+      const field = util.makeField('value', 'text');
       expect(field).toEqual({
-        name: 'name',
-        label: 'Label',
         type: 'text',
         value: 'value'
       });
@@ -50,13 +48,13 @@ describe('util', () => {
     describe('when value type is object', () => {
       it('should convert the value to plain object values without field metadata', () => {
         const value = {
-          title: util.makeField('My Title', 'text', 'title', 'Title'),
-          read: util.makeField(true, 'boolean', 'read', 'Read'),
+          title: util.makeField('My Title', 'text'),
+          read: util.makeField(true, 'boolean'),
           cover: util.makeField({
             ref: 'file1',
             mimeType: 'image/jpeg',
             downloadUrl: 'download1'
-          }, 'file', 'cover', 'Cover')
+          }, 'file')
         };
         expect(util.deflateValue(value, 'object')).toEqual({
           title: 'My Title',
@@ -89,15 +87,15 @@ describe('util', () => {
         const value = {
           foo: util.makeField({
             bar: util.makeField({
-              baz: util.makeField('abc', 'text', 'baz', 'Baz'),
-              baq: util.makeField('20', 'number', 'baq', 'Baq'),
-              buz: util.makeField(false, 'boolean', 'buz', 'Buz'),
-              bez: util.makeField('2018-02-22T09:19:33.885Z', 'datetime', 'bez', 'Bez'),
+              baz: util.makeField('abc', 'text'),
+              baq: util.makeField('20', 'number'),
+              buz: util.makeField(false, 'boolean'),
+              bez: util.makeField('2018-02-22T09:19:33.885Z', 'datetime'),
               bat: util.makeField(
                 { ref: 'f2', mimeType: 'image/png', downloadUrl: 'down1' },
-                'file', 'bat', 'Bat')
-            }, 'object', 'bar', 'Bar'),
-          },'object', 'foo', 'Foo'),
+                'file')
+            }, 'object'),
+          },'object'),
           biz: util.makeField([
             { type: 'boolean', value: true },
             { type: 'text', value: 'xyz' },
@@ -109,9 +107,9 @@ describe('util', () => {
               downloadUrl: 'down3'
             } },
             { type: 'object', value: {
-              fizz: util.makeField('buzz', 'text', 'fizz', 'Fizz' )
+              fizz: util.makeField('buzz', 'text')
             } }
-          ], 'list', 'biz', 'Biz')
+          ], 'list')
         };
         expect(util.deflateValue(value, 'object')).toMatchSnapshot();
       });
@@ -124,9 +122,9 @@ describe('util', () => {
     beforeEach(() => {
       objField = util.makeField({
         foo: util.makeField({
-          fizz: util.makeField('buzz', 'text', 'fizz', 'Fizz')
-        }, 'object', 'foo', 'Foo'),
-        bar: util.makeField('bar value', 'text', 'bar', 'Bar'),
+          fizz: util.makeField('buzz', 'text')
+        }, 'object'),
+        bar: util.makeField('bar value', 'text'),
         rabs: util.makeField([
           {
             type: 'boolean',
@@ -135,11 +133,11 @@ describe('util', () => {
           {
             type: 'object',
             value: {
-              dar: util.makeField('dar value', 'text', 'dar', 'Dar')
+              dar: util.makeField('dar value', 'text')
             }
           }
-        ], 'list', 'rabs', 'Rabs')
-      }, 'object', 'name', 'label');
+        ], 'list')
+      }, 'object');
     });
 
     describe('when the start field has type object', () => {
@@ -197,12 +195,16 @@ describe('util', () => {
           _id: 'u1',
           type: 'user'
         },
+        updatedBy: {
+          _id: 'u2',
+          type: 'user'
+        },
         tags: [],
         data: {
           foo: util.makeField({
-            fizz: util.makeField('buzz', 'text', 'fizz', 'Fizz')
-          }, 'object', 'foo', 'Foo'),
-          bar: util.makeField('bar value', 'text', 'bar', 'Bar'),
+            fizz: util.makeField('buzz', 'text')
+          }, 'object'),
+          bar: util.makeField('bar value', 'text'),
           rabs: util.makeField([
             {
               type: 'boolean',
@@ -211,10 +213,10 @@ describe('util', () => {
             {
               type: 'object',
               value: {
-                dar: util.makeField('dar value', 'text', 'dar', 'Dar')
+                dar: util.makeField('dar value', 'text')
               }
             }
-          ], 'list', 'rabs', 'Rabs')
+          ], 'list')
         }
       };
     });

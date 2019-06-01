@@ -10,22 +10,22 @@ describe('EntityWrapper', () => {
     entity = {
       _id: 'entity1',
       data: {
-        title: util.makeField('My Title', 'text', 'title', 'Title'),
-        active: util.makeField(false, 'boolean', 'active', 'Active'),
-        count: util.makeField('100', 'number', 'count', 'Count'),
+        title: util.makeField('My Title', 'text'),
+        active: util.makeField(false, 'boolean'),
+        count: util.makeField('100', 'number'),
         address: util.makeField({
-          city: util.makeField('Nairobi', 'text', 'city', 'City'),
-          street: util.makeField('Some street', 'text', 'street', 'Street'),
+          city: util.makeField('Nairobi', 'text'),
+          street: util.makeField('Some street', 'text'),
           landmarks: util.makeField([
             { type: 'text', value: 'Near historical monument' }
-          ], 'list', 'landmarks', 'Landmarks')
-        }, 'object', 'address', 'Address'),
-        lastSeen: util.makeField('2018-11-22T09:19:33.885Z', 'datetime', 'lastSeen', 'Last seen'),
+          ], 'list')
+        }, 'object'),
+        lastSeen: util.makeField('2018-11-22T09:19:33.885Z', 'datetime'),
         image: util.makeField({
           ref: 'file1',
           mimeType: 'image/jpeg',
           downloadUrl: 'download'
-        }, 'file', 'image', 'Image'),
+        }, 'file'),
         misc: util.makeField([
           {
             type: 'file',
@@ -37,14 +37,18 @@ describe('EntityWrapper', () => {
           },
           { type: 'number', value: '223.45' },
           { type: 'object', value: {
-            foo: util.makeField('bar', 'text', 'foo', 'Foo')
+            foo: util.makeField('bar', 'text')
           }}
-        ], 'list', 'misc', 'Misc')
+        ], 'list',)
       },
       createdAt: '2017-02-22T09:19:33.885Z',
       updatedAt: '2018-10-22T09:19:33.885Z',
       createdBy: {
         _id: 'user1',
+        type: 'user'
+      },
+      updatedBy: {
+        _id: 'user2',
         type: 'user'
       },
       tags: ['posts', 'stuff']
@@ -58,6 +62,7 @@ describe('EntityWrapper', () => {
       expect(wrapped.id).toEqual(entity._id);
       expect(wrapped.tags).toEqual(entity.tags);
       expect(wrapped.createdBy).toEqual(entity.createdBy);
+      expect(wrapped.updatedBy).toEqual(entity.updatedBy);
     });
     it('should return timestamps properties converted to Date objects', () => {
       expect(wrapped.createdAt).toEqual(new Date(entity.createdAt));
@@ -190,43 +195,14 @@ describe('EntityWrapper', () => {
     });
     describe('when a default is provided', () => {
       it('should return the default if the path cannot be matched', () => {
-        const defField = util.makeField('test', 'text', 'name', 'label');
+        const defField = util.makeField('test', 'text');
         const field = wrapped.field('address.unknown.landmarks', defField);
         expect(field).toEqual(defField);
       });
       it('should return the true (list of landmarks) field if the the path is matched', () => {
-        const defField = util.makeField('test', 'text', 'name', 'label');
+        const defField = util.makeField('test', 'text');
         const field = wrapped.field('address.landmarks', defField);
         expect(field).toMatchSnapshot();
-      });
-    });
-  });
-
-  describe('label', () => {
-    it('should return the label of the field at the specified path', () => {
-      const label = wrapped.label('address.landmarks');
-      expect(label).toEqual('Landmarks');
-    });
-    it('should return undefined if the field at the path does not have a label', () => {
-      const label = wrapped.label('address.landmarks.0');
-      expect(label).toBeUndefined();
-    });
-    it('should return undefined if the path cannot be matched', () => {
-      const label = wrapped.label('address.unknown.landmarks');
-      expect(label).toBeUndefined();
-    });
-    describe('when a default is provided', () => {
-      it('should return the default if the path cannot be matched', () => {
-        const label = wrapped.label('address.unknown.landmarks', 'Label');
-        expect(label).toBe('Label');
-      });
-      it('should return the default if the field at the path does not have a label', () => {
-        const label = wrapped.label('address.landmarks.0', 'Label');
-        expect(label).toBe('Label');
-      });
-      it('should return the true label if the the path is matched', () => {
-        const label = wrapped.label('address.landmarks', 'boolean');
-        expect(label).toBe('Landmarks');
       });
     });
   });
