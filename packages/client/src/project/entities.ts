@@ -1,6 +1,6 @@
 import { ApiEntity, wrapEntity, wrapEntityArray, WrappedEntity } from '@surix/data-helpers';
 import { AxiosInstance } from 'axios';
-import { ProjectEntities, Query } from '../types';
+import {  Entity, ProjectEntities, Query } from '../types';
 
 export function getProjectEntities (projectId: string, apiClient: AxiosInstance): ProjectEntities {
   return {
@@ -13,7 +13,7 @@ export function getProjectEntities (projectId: string, apiClient: AxiosInstance)
       const entities = res.data;
       return wrapEntityArray(entities);
     },
-    async create(entity: any): Promise<WrappedEntity> {
+    async create(entity: Entity): Promise<WrappedEntity> {
       const res = await apiClient.post<ApiEntity>(`/projects/${projectId}/entities`, entity);
       const returnedEntity = res.data;
       return wrapEntity(returnedEntity);
