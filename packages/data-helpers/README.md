@@ -37,6 +37,24 @@ const {
 } = require('@surix/data-helpers')
 ```
 
+### `expnadEntity`
+
+Converts a user friendly version of an entity to the raw version of the entity.  
+*Note: For now, dates are interpreted `text` type but will be updated to `datatime` in future*
+```javascript
+import { expandEntity } from '@surix/data-helpers';
+
+const entity = {
+  data: {
+    name: 'My Name';
+    age: 12
+  },
+  tags: []
+};
+
+const expandedEntity = expandEntity(entity);
+```
+
 ### `wrapEntity`
 
 ```javascript
