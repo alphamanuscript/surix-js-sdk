@@ -79,7 +79,7 @@ export interface RawEntityData {
     [fieldName: string]: string | number | object | boolean;
   }
   export interface Entity {
-    data: DataField;
+    data: EntitySingleDataField;
     tags?: string[];
   }
 
