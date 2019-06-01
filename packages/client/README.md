@@ -55,7 +55,7 @@ const entity = {
 
 const savedEntity = await project.entities.create(entity)
 
-console.log(savedEntity.get(entity.get('name')))
+console.log(savedEntity.get('name'))
 ```
 #### `project.entities.get(id: string)`
 
