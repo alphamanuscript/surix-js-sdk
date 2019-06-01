@@ -48,21 +48,29 @@ export enum FieldType {
 
 export interface FieldPair {
   type: FieldType;
-  value: EntityData | string | EntityData[];
+  value: RawEntityData | string | RawEntityData[];
 }
 
-export interface EntityField extends FieldPair {
+export interface RawEntityField extends FieldPair {
 }
 
-export interface EntityData {
-  [fieldName: string]: EntityField;
+export interface RawEntityData {
+  [fieldName: string]: RawEntityField;
 }
 
 /**
  * this interface describe the shape of the entity
  * as used within the system and the API
  */
+export interface RawEntity {
+  data: RawEntityData;
+  tags?: string[];
+}
+
+export interface DataField {
+  [fieldName: string]: string | number | object | boolean;
+}
 export interface Entity {
-  data: EntityData;
-  tags: string[];
+  data: DataField;
+  tags?: string[];
 }

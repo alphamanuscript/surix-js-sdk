@@ -46,11 +46,9 @@ Creates a given entity
 ```javascript
 const entity = {
   data: {
-    name: {
-      type: 'text',
-      value: 'My Awesome Name'
-    }
-  }
+    name: 'My Awesome Name'
+  },
+  tags: []
 }
 
 const savedEntity = await project.entities.create(entity)
