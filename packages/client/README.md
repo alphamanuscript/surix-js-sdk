@@ -39,6 +39,24 @@ const project = client.project('projectId');
 
 ### Entities
 
+#### `project.entities.create(entity: Entity)`
+
+Creates a given entity
+
+```javascript
+const entity = {
+  data: {
+    name: {
+      type: 'text',
+      value: 'My Awesome Name'
+    }
+  }
+}
+
+const savedEntity = await project.entities.create(entity)
+
+console.log(savedEntity.get(entity.get('name')))
+```
 #### `project.entities.get(id: string)`
 
 Fetches an entity by ID.

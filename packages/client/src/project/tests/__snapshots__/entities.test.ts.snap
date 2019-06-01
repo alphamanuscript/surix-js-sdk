@@ -11,10 +11,8 @@ EntityWrapper {
     },
     "data": Object {
       "name": Object {
-        "label": "Label",
         "name": "name",
         "type": "text",
-        "value": "Foo",
       },
     },
     "tags": Array [
@@ -24,6 +22,33 @@ EntityWrapper {
   },
   "createdAt": 2017-02-22T09:19:33.885Z,
   "updatedAt": 2018-10-22T09:19:33.885Z,
+}
+`;
+
+exports[`Project Entities query create should return an error 1`] = `
+EntityWrapper {
+  "_entity": Object {
+    "entity": Object {
+      "_id": "e1",
+      "createdAt": "2017-02-22T09:19:33.885Z",
+      "createdBy": Object {
+        "_id": "u1",
+        "type": "user",
+      },
+      "data": Object {
+        "name": Object {
+          "name": "name",
+          "type": "text",
+        },
+      },
+      "tags": Array [
+        "t1",
+      ],
+      "updatedAt": "2018-10-22T09:19:33.885Z",
+    },
+  },
+  "createdAt": Date { NaN },
+  "updatedAt": Date { NaN },
 }
 `;
 
@@ -39,10 +64,8 @@ Array [
       },
       "data": Object {
         "name": Object {
-          "label": "Label",
           "name": "name",
           "type": "text",
-          "value": "Foo",
         },
       },
       "tags": Array [
@@ -63,10 +86,8 @@ Array [
       },
       "data": Object {
         "name": Object {
-          "label": "Label",
           "name": "name",
           "type": "text",
-          "value": "Bar",
         },
       },
       "tags": Array [
