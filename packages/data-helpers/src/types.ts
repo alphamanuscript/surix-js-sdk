@@ -13,7 +13,11 @@ export interface EntitySingleDataField {
     value: boolean | string | number | EntitySingleDataField | EntitySingleDataField[];
 }
 
-export interface Entity {
+  /**
+   * this interface describe the shape of the entity
+   * as used within the system and the API
+   */
+export interface RawEntity {
     data: EntitySingleDataField;
     tags?: [string];
 }
@@ -55,33 +59,16 @@ export interface AuthContext {
     type: 'user' | 'app';
 }
 
-export interface FieldPair {
-    type: FieldType;
-    value: RawEntityData | string | RawEntityData[];
-  }
-export interface RawEntityField extends FieldPair {
-}
-
 export interface RawEntityData {
-    [fieldName: string]: RawEntityField;
-  }
-  
-  /**
-   * this interface describe the shape of the entity
-   * as used within the system and the API
-   */
-  export interface RawEntity {
-    data: RawEntityData;
+    [fieldName: string]: TypeValuePair;
+}
+export interface DataField {
+    [fieldName: string]: string | number | object | boolean | DataField;
+}
+export interface Entity {
+    data: DataField;
     tags?: string[];
-  }
-  
-  export interface DataField {
-    [fieldName: string]: string | number | object | boolean;
-  }
-  export interface Entity {
-    data: EntitySingleDataField;
-    tags?: string[];
-  }
+}
 
 export type FieldOrValuePair = Field | TypeValuePair;
 export type NullableFieldOrValuePair = FieldOrValuePair | undefined;

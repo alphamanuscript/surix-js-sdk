@@ -1,12 +1,13 @@
-import { Entity, EntitySingleDataField, RawEntity, RawEntityData } from '../types';
+import { DataField, Entity, RawEntity, RawEntityData } from '../types';
 
 function expandEntity (entity: Entity): RawEntity {
     const { data, tags } = entity;
     const convertedData = expandEntityData(data);
+    // @ts-ignore
     return { data: convertedData, tags };
 }
 
-function expandEntityData (data: EntitySingleDataField): RawEntityData {
+function expandEntityData (data: DataField): RawEntityData {
     const expandedEntity = Object.keys(data)
         .reduce((expanded, key) => {
         let converted = {};
@@ -14,6 +15,7 @@ function expandEntityData (data: EntitySingleDataField): RawEntityData {
             case 'object':
                 converted = {
                     type: 'object',
+                    // @ts-ignore 
                     value: expandEntityData(data[key])
                 };
             break;
