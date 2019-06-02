@@ -48,7 +48,7 @@ export enum FieldType {
 
 export interface FieldPair {
   type: FieldType;
-  value: RawEntityData | string | RawEntityData[];
+  value: RawEntityData | string | RawEntityData[] | number;
 }
 
 export interface RawEntityField extends FieldPair {
