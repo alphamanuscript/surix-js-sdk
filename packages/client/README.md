@@ -55,6 +55,22 @@ const savedEntity = await project.entities.create(entity)
 
 console.log(savedEntity.get('name'))
 ```
+
+Note: Before the entity is created, it is expanded (using `expandEntity` function in `@surix/data-helpers`) to a raw entity that includes the types information using the type of the values provided in the data field.
+The entity above would be converted to:
+
+```javascript
+{
+  data: {
+    name: {
+      type: 'text',
+      value: 'My Awesome Name'
+    }
+  },
+  tags: []
+}
+```
+Dates are expanded as `text` for now and will correctly be expanded to `datetime` in future versions of `@surix/data-helpers`. Arrays are not supported for now.
 #### `project.entities.get(id: string)`
 
 Fetches an entity by ID.
