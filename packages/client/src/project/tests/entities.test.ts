@@ -16,7 +16,7 @@ describe('Project Entities', () => {
       data: {
         name: {
           type: 'text',
-          name: 'name'
+          value: 'name'
         }
       }
     },
@@ -29,7 +29,7 @@ describe('Project Entities', () => {
       data: {
         name: {
           type: 'text',
-          name: 'name'
+          value: 'name'
         }
       }
     }
@@ -84,6 +84,12 @@ describe('Project Entities', () => {
     });
 
     describe('create', () => {
+      const userEntity = {
+        data: {
+          name: 'someone 1'
+        },
+        tags: []
+      }
       let apiClient: AxiosInstance;
       async function callMockCreate (entity: any): Promise<dataHelpers.WrappedEntity> {
         apiClient = api.getApiClient('http://baseurl', 'somekey');
@@ -95,9 +101,10 @@ describe('Project Entities', () => {
         return ent;
       }
       it('should call POST /projects/:pid/entities endpoint with entity', async () => {
-        const entity = apiEntities[0];
+        const entity = userEntity;
+        const expectedEntity = dataHelpers.expandEntity(entity)
         await callMockCreate(entity);
-        expect(apiClient.post).toHaveBeenCalledWith('/projects/project1/entities', entity);
+        expect(apiClient.post).toHaveBeenCalledWith('/projects/project1/entities', expectedEntity);
       });
       it('should return an error', async () => {
         const ent = apiEntities[0];

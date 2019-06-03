@@ -11,8 +11,8 @@ EntityWrapper {
     },
     "data": Object {
       "name": Object {
-        "name": "name",
         "type": "text",
+        "value": "name",
       },
     },
     "tags": Array [
@@ -37,8 +37,8 @@ EntityWrapper {
       },
       "data": Object {
         "name": Object {
-          "name": "name",
           "type": "text",
+          "value": "name",
         },
       },
       "tags": Array [
@@ -64,8 +64,8 @@ Array [
       },
       "data": Object {
         "name": Object {
-          "name": "name",
           "type": "text",
+          "value": "name",
         },
       },
       "tags": Array [
@@ -86,8 +86,8 @@ Array [
       },
       "data": Object {
         "name": Object {
-          "name": "name",
           "type": "text",
+          "value": "name",
         },
       },
       "tags": Array [
