@@ -62,7 +62,7 @@
     "webpack-cli": "^3.1.2"
   },
   "dependencies": {
-    "@surix/data-helpers": "^0.6.0",
+    "@surix/data-helpers": "^0.7.1",
     "axios": "^0.18.0"
   }
 }
