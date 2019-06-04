@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ExpandEntity should convert successfully 1`] = `
+Object {
+  "data": Object {
+    "address": Object {
+      "type": "object",
+      "value": Object {
+        "location": Object {
+          "type": "text",
+          "value": "Nairobi",
+        },
+      },
+    },
+    "age": Object {
+      "type": "number",
+      "value": 12,
+    },
+    "birthDate": Object {
+      "type": "datetime",
+      "value": 1998-12-31T21:00:00.000Z,
+    },
+    "children": Object {
+      "type": "list",
+      "value": Array [
+        Object {
+          "name": Object {
+            "type": "text",
+            "value": "First son",
+          },
+        },
+        Object {
+          "name": Object {
+            "type": "text",
+            "value": "Second daughter",
+          },
+        },
+      ],
+    },
+    "isOldEnough": Object {
+      "type": "boolean",
+      "value": true,
+    },
+    "name": Object {
+      "type": "text",
+      "value": "Kevin Nderitu",
+    },
+  },
+  "tags": undefined,
+}
+`;
