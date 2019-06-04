@@ -10,7 +10,16 @@ describe('ExpandEntity', () => {
                 age: 12,
                 address: {
                     location: 'Nairobi'
-                }
+                },
+                children: [
+                    {
+                        name: 'First son'
+                    },
+                    {
+                        name: 'Second daughter'
+                    }
+                ],
+                isOldEnough: true
             }
         };
     });
@@ -36,9 +45,31 @@ describe('ExpandEntity', () => {
                             value: entity.data.address.location
                         }
                     }
+                },
+                children: {
+                    type: 'list',
+                    value: [
+                        {
+                            name: {
+                                type: 'text',
+                                value: 'First son'
+                            }
+                        },
+                        {
+                            name: {
+                                type: 'text',
+                                value: 'Second daughter'
+                            }
+                        }
+                    ]
+                },
+                isOldEnough: {
+                    type: 'boolean',
+                    value: true
                 }
             }
         };
+        // @ts-ignore
         expect(expandEntity(entity)).toEqual(expected)
     });
 });

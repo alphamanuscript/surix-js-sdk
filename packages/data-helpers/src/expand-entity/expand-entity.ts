@@ -13,12 +13,17 @@ function expandEntityData (data: DataField): RawEntityData {
         let converted = {};
         switch(typeof data[key]) {
             case 'object':
+                const isArray = data[key] instanceof Array;
                 converted = {
-                    type: 'object',
-                    // @ts-ignore 
-                    value: expandEntityData(data[key])
+                    type: isArray ? 'list' : 'object',
+                    // @ts-ignore
+                    value: isArray ? 
+                        // @ts-ignore
+                        data[key].map(item => expandEntityData(item)) : 
+                        // @ts-ignore
+                        expandEntityData(data[key])
                 };
-            break;
+                break;
             case 'string':
                 converted = {
                     type: 'text',

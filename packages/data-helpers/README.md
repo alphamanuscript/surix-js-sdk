@@ -46,8 +46,17 @@ import { expandEntity } from '@surix/data-helpers';
 
 const entity = {
   data: {
-    name: 'My Name';
-    age: 12
+    name: 'My Name',
+    age: 12,
+    children: [
+      {
+        name: 'Some name'
+      }
+    ],
+    address: {
+      location: 'Nairobi'
+    },
+    isOldEnough: true
   },
   tags: []
 };
