@@ -16,9 +16,7 @@ describe('Project Entities', () => {
       data: {
         name: {
           type: 'text',
-          value: 'Foo',
-          name: 'name',
-          label: 'Label'
+          value: 'name'
         }
       }
     },
@@ -31,9 +29,7 @@ describe('Project Entities', () => {
       data: {
         name: {
           type: 'text',
-          value: 'Bar',
-          name: 'name',
-          label: 'Label'
+          value: 'name'
         }
       }
     }
@@ -84,6 +80,37 @@ describe('Project Entities', () => {
       it('should call query endpoint with empty object', async () => {
         await callMockedQuery();
         expect(apiClient.post).toHaveBeenCalledWith(`/projects/project1/entities/query`, {});
+      });
+    });
+
+    describe('create', () => {
+      const userEntity = {
+        data: {
+          name: 'someone 1'
+        },
+        tags: []
+      }
+      let apiClient: AxiosInstance;
+      async function callMockCreate (entity: any): Promise<dataHelpers.WrappedEntity> {
+        apiClient = api.getApiClient('http://baseurl', 'somekey');
+        jest.spyOn(apiClient, 'post').mockReturnValue(Promise.resolve({ data: 
+          { entity } }));
+        jest.spyOn(dataHelpers, 'wrapEntity');
+        const project = getProjectApi('project1', apiClient);
+        const ent = await project.entities.create(entity);
+        return ent;
+      }
+      it('should call POST /projects/:pid/entities endpoint with entity', async () => {
+        const entity = userEntity;
+        const expectedEntity = dataHelpers.expandEntity(entity)
+        await callMockCreate(entity);
+        expect(apiClient.post).toHaveBeenCalledWith('/projects/project1/entities', expectedEntity);
+      });
+      it('should return an error', async () => {
+        const ent = apiEntities[0];
+        const entity = await callMockCreate(ent);
+        expect(dataHelpers.wrapEntity).toHaveBeenCalledWith(ent);
+        expect(entity).toMatchSnapshot();
       });
     });
   }); 

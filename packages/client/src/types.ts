@@ -9,6 +9,7 @@ export interface Project {
 export interface ProjectEntities {
   get(id: string): Promise<WrappedEntity>;
   query(query?: Query): Promise<WrappedEntity[]>;
+  create(entity: any): Promise<WrappedEntity>;
 }
 
 export interface ProjectFiles {
@@ -32,3 +33,44 @@ export interface TagListItem {
 }
 
 export type TagList = TagListItem[];
+
+export enum FieldType {
+  TEXT = 'text',
+  BOOLEAN = 'boolean',
+  NUMBER = 'number',
+  DATETIME = 'datetime',
+  PHONE = 'phone',
+  EMAIL = 'email',
+  FILE = 'file',
+  OBJECT = 'object',
+  LIST = 'list'
+}
+
+export interface FieldPair {
+  type: FieldType;
+  value: RawEntityData | string | RawEntityData[] | number;
+}
+
+export interface RawEntityField extends FieldPair {
+}
+
+export interface RawEntityData {
+  [fieldName: string]: RawEntityField;
+}
+
+/**
+ * this interface describe the shape of the entity
+ * as used within the system and the API
+ */
+export interface RawEntity {
+  data: RawEntityData;
+  tags?: string[];
+}
+
+export interface DataField {
+  [fieldName: string]: string | number | object | boolean;
+}
+export interface Entity {
+  data: DataField;
+  tags?: string[];
+}

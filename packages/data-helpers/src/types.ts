@@ -8,6 +8,20 @@ export class ApiEntity {
     tags: string[];
 }
 
+export interface EntitySingleDataField {
+    type: FieldType;
+    value: boolean | string | number | EntitySingleDataField | EntitySingleDataField[];
+}
+
+  /**
+   * this interface describe the shape of the entity
+   * as used within the system and the API
+   */
+export interface RawEntity {
+    data: EntitySingleDataField;
+    tags?: [string];
+}
+
 export type FieldPathArray = Array<string|number>;
 
 export type FieldType = 'text' | 'boolean' | 'number' | 'datetime'
@@ -43,6 +57,17 @@ export interface TypeValuePair {
 export interface AuthContext {
     _id: string;
     type: 'user' | 'app';
+}
+
+export interface RawEntityData {
+    [fieldName: string]: TypeValuePair;
+}
+export interface DataField {
+    [fieldName: string]: string | number | object | boolean | DataField;
+}
+export interface Entity {
+    data: DataField;
+    tags?: string[];
 }
 
 export type FieldOrValuePair = Field | TypeValuePair;
