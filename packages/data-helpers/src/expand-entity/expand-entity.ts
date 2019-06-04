@@ -1,10 +1,11 @@
 import { DataField, Entity, RawEntity, RawEntityData } from '../types';
 
 function expandEntity (entity: Entity): RawEntity {
-    const { data, tags } = entity;
+    const { data } = entity;
     const convertedData = expandEntityData(data);
+    // delete entity.data;
     // @ts-ignore
-    return { data: convertedData, tags };
+    return { ...entity, data: convertedData };
 }
 
 function expandEntityData (data: DataField): RawEntityData {

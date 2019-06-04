@@ -2,6 +2,7 @@
 
 exports[`ExpandEntity should convert successfully 1`] = `
 Object {
+  "_id": "thisisanid",
   "data": Object {
     "address": Object {
       "type": "object",
@@ -46,6 +47,8 @@ Object {
       "value": "Kevin Nderitu",
     },
   },
-  "tags": undefined,
+  "tags": Array [
+    "sometag",
+  ],
 }
 `;

@@ -21,7 +21,9 @@ describe('ExpandEntity', () => {
                     }
                 ],
                 isOldEnough: true
-            }
+            },
+            tags: ['sometag'],
+            _id: 'thisisanid'
         };
     });
     it('should convert successfully', async () => {
