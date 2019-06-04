@@ -38,13 +38,13 @@ function expandEntityData (data: DataField): RawEntityData {
                     type: 'text',
                     value: data[key]
                 };
-            break;
+                break;
             default:
                 converted = { 
                     type: typeof data[key],
                     value: data[key]
                 };
-            break;
+                break;
         }
         return { ...expanded, [key]: converted };
         }, {});
