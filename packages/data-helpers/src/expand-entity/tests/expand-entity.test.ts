@@ -8,6 +8,7 @@ describe('ExpandEntity', () => {
             data: {
                 name: 'Kevin Nderitu',
                 age: 12,
+                birthDate: new Date('1-1-1999'),
                 address: {
                     location: 'Nairobi'
                 },
@@ -62,6 +63,10 @@ describe('ExpandEntity', () => {
                             }
                         }
                     ]
+                },
+                birthDate: { 
+                    type: 'datetime', 
+                    value: new Date('1-1-1999')
                 },
                 isOldEnough: {
                     type: 'boolean',

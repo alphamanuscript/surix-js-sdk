@@ -64,6 +64,8 @@ const entity = {
 const expandedEntity = expandEntity(entity);
 ```
 
+**Note:** `Date()` will be converted to a string. `new Date()` will be converted to `datetime` so if you want dated treated correctly, you can use `new Date()`
+
 ### `wrapEntity`
 
 ```javascript
