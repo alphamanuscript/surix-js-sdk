@@ -13,6 +13,15 @@ export function getProjectEntities (projectId: string, apiClient: AxiosInstance)
       const entities = res.data;
       return wrapEntityArray(entities);
     },
+    async patch(entity: Entity): Promise<WrappedEntity> {
+      const entityId = entity._id;
+      delete entity._id;
+      const expandedEntity = expandEntity(entity);
+      const res = await apiClient.patch<ApiEntity>(
+        `/projects/${projectId}/entities/${entityId}`, expandedEntity);
+      const returnedEntity = res.data;
+      return wrapEntity(returnedEntity);
+    },
     async create(entity: Entity): Promise<WrappedEntity> {
       const expandedEntity = expandEntity(entity);
       const res = await apiClient.post<ApiEntity>(
