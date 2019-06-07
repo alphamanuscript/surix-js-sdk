@@ -89,7 +89,7 @@ describe('Project Entities', () => {
           name: 'someone 1'
         },
         tags: []
-      }
+      };
       let apiClient: AxiosInstance;
       async function callMockCreate (entity: any): Promise<dataHelpers.WrappedEntity> {
         apiClient = api.getApiClient('http://baseurl', 'somekey');
@@ -102,7 +102,7 @@ describe('Project Entities', () => {
       }
       it('should call POST /projects/:pid/entities endpoint with entity', async () => {
         const entity = userEntity;
-        const expectedEntity = dataHelpers.expandEntity(entity)
+        const expectedEntity = dataHelpers.expandEntity(entity);
         await callMockCreate(entity);
         expect(apiClient.post).toHaveBeenCalledWith('/projects/project1/entities', expectedEntity);
       });
@@ -113,32 +113,58 @@ describe('Project Entities', () => {
         expect(entity).toMatchSnapshot();
       });
     });
-    describe('put', () => {
+    describe('patch', () => {
       const userEntity = {
         data: {
           name: 'someone 1'
         },
         tags: []
-      }
-      let apiClient: AxiosInstance;
-      async function callMockPut (entity: any): Promise<dataHelpers.WrappedEntity> {
+      };
+      async function callMockUpdate (entity: any): Promise<dataHelpers.WrappedEntity> {
         apiClient = api.getApiClient('http://baseurl', 'somekey');
-        jest.spyOn(apiClient, 'put').mockReturnValue(Promise.resolve({ data: 
+        jest.spyOn(apiClient, 'patch').mockReturnValue(Promise.resolve({ data: 
           { entity } }));
         jest.spyOn(dataHelpers, 'wrapEntity');
         const project = getProjectApi('project1', apiClient);
-        const ent = await project.entities.put(entity);
+        const ent = await project.entities.update(entity);
         return ent;
       }
-      it('should call PUT /projects/:pid/entities/:eid endpoint with entity', async () => {
+      it('should call PATCH /projects/:pid/entities/:eid endpoint with entity', async () => {
         const entity = { ...userEntity };
-        entity['_id'] = 'entity1';
-        const expectedEntity = dataHelpers.expandEntity(entity);
-        const frozen = Object.freeze(entity);
-        await callMockPut(frozen);
-        expect(apiClient.put).toHaveBeenCalledWith(
-          '/projects/project1/entities/entity1', expectedEntity);
+          entity['_id'] = 'entity1';
+          const expectedEntity = dataHelpers.expandEntity(entity);
+          const frozen = Object.freeze(entity);
+          await callMockUpdate(frozen);
+          expect(apiClient.patch).toHaveBeenCalledWith(
+            '/projects/project1/entities/entity1', expectedEntity);
       });
+    });
+      describe('put', () => {
+        const userEntity = {
+          data: {
+            name: 'someone 1'
+          },
+          tags: []
+        };
+        let apiClient: AxiosInstance;
+        async function callMockPut (entity: any): Promise<dataHelpers.WrappedEntity> {
+          apiClient = api.getApiClient('http://baseurl', 'somekey');
+          jest.spyOn(apiClient, 'put').mockReturnValue(Promise.resolve({ data: 
+            { entity } }));
+          jest.spyOn(dataHelpers, 'wrapEntity');
+          const project = getProjectApi('project1', apiClient);
+          const ent = await project.entities.put(entity);
+          return ent;
+        }
+        it('should call PUT /projects/:pid/entities/:eid endpoint with entity', async () => {
+          const entity = { ...userEntity };
+          entity['_id'] = 'entity1';
+          const expectedEntity = dataHelpers.expandEntity(entity);
+          const frozen = Object.freeze(entity);
+          await callMockPut(frozen);
+          expect(apiClient.put).toHaveBeenCalledWith(
+            '/projects/project1/entities/entity1', expectedEntity);
+        });
     });
   }); 
 });
