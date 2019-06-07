@@ -100,6 +100,26 @@ describe('Project Entities', () => {
         const ent = await project.entities.create(entity);
         return ent;
       }
+      it('should call POST /projects/:pid/entities endpoint with entity', async () => {
+        const entity = userEntity;
+        const expectedEntity = dataHelpers.expandEntity(entity);
+        await callMockCreate(entity);
+        expect(apiClient.post).toHaveBeenCalledWith('/projects/project1/entities', expectedEntity);
+      });
+      it('should return an error', async () => {
+        const ent = apiEntities[0];
+        const entity = await callMockCreate(ent);
+        expect(dataHelpers.wrapEntity).toHaveBeenCalledWith(ent);
+        expect(entity).toMatchSnapshot();
+      });
+    });
+    describe('patch', () => {
+      const userEntity = {
+        data: {
+          name: 'someone 1'
+        },
+        tags: []
+      };
       async function callMockUpdate (entity: any): Promise<dataHelpers.WrappedEntity> {
         apiClient = api.getApiClient('http://baseurl', 'somekey');
         jest.spyOn(apiClient, 'patch').mockReturnValue(Promise.resolve({ data: 
@@ -117,18 +137,6 @@ describe('Project Entities', () => {
         await callMockUpdate(frozen);
         expect(apiClient.patch).toHaveBeenCalledWith(
           '/projects/project1/entities/entity1', expectedEntity);
-      });
-      it('should call POST /projects/:pid/entities endpoint with entity', async () => {
-        const entity = userEntity;
-        const expectedEntity = dataHelpers.expandEntity(entity);
-        await callMockCreate(entity);
-        expect(apiClient.post).toHaveBeenCalledWith('/projects/project1/entities', expectedEntity);
-      });
-      it('should return an error', async () => {
-        const ent = apiEntities[0];
-        const entity = await callMockCreate(ent);
-        expect(dataHelpers.wrapEntity).toHaveBeenCalledWith(ent);
-        expect(entity).toMatchSnapshot();
       });
     });
   }); 
