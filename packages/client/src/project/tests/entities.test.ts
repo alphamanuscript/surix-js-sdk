@@ -113,5 +113,32 @@ describe('Project Entities', () => {
         expect(entity).toMatchSnapshot();
       });
     });
+    describe('put', () => {
+      const userEntity = {
+        data: {
+          name: 'someone 1'
+        },
+        tags: []
+      }
+      let apiClient: AxiosInstance;
+      async function callMockPut (entity: any): Promise<dataHelpers.WrappedEntity> {
+        apiClient = api.getApiClient('http://baseurl', 'somekey');
+        jest.spyOn(apiClient, 'put').mockReturnValue(Promise.resolve({ data: 
+          { entity } }));
+        jest.spyOn(dataHelpers, 'wrapEntity');
+        const project = getProjectApi('project1', apiClient);
+        const ent = await project.entities.put(entity);
+        return ent;
+      }
+      it('should call PUT /projects/:pid/entities/:eid endpoint with entity', async () => {
+        const entity = { ...userEntity };
+        entity['_id'] = 'entity1';
+        const expectedEntity = dataHelpers.expandEntity(entity);
+        const frozen = Object.freeze(entity);
+        await callMockPut(frozen);
+        expect(apiClient.put).toHaveBeenCalledWith(
+          '/projects/project1/entities/entity1', expectedEntity);
+      });
+    });
   }); 
 });
