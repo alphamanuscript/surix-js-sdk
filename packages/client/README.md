@@ -70,7 +70,23 @@ The entity above would be converted to:
   tags: []
 }
 ```
-Dates are expanded as `text` for now and will correctly be expanded to `datetime` in future versions of `@surix/data-helpers`. Arrays are not supported for now.
+ Dates created with the `Date()` function are expanded as `text`. and those created with `new Date()` are correctly expanded to `datetime`.
+
+#### `project.entities.put(entity: Entity)`
+
+Updates an entity by completely replacing its data.
+
+```javascript
+const entity = {
+  _id: 'someid', // The id of the entity to be updated
+  data: {
+    name: 'My name'
+  }
+}
+
+const changedEntity = await project.entities.put(entity);
+
+```
 #### `project.entities.get(id: string)`
 
 Fetches an entity by ID.
