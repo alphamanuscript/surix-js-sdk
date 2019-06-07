@@ -89,7 +89,7 @@ describe('Project Entities', () => {
           name: 'someone 1'
         },
         tags: []
-      }
+      };
       let apiClient: AxiosInstance;
       async function callMockCreate (entity: any): Promise<dataHelpers.WrappedEntity> {
         apiClient = api.getApiClient('http://baseurl', 'somekey');
@@ -100,9 +100,27 @@ describe('Project Entities', () => {
         const ent = await project.entities.create(entity);
         return ent;
       }
+      async function callMockUpdate (entity: any): Promise<dataHelpers.WrappedEntity> {
+        apiClient = api.getApiClient('http://baseurl', 'somekey');
+        jest.spyOn(apiClient, 'patch').mockReturnValue(Promise.resolve({ data: 
+          { entity } }));
+        jest.spyOn(dataHelpers, 'wrapEntity');
+        const project = getProjectApi('project1', apiClient);
+        const ent = await project.entities.update(entity);
+        return ent;
+      }
+      it('should call PATCH /projects/:pid/entities/:eid endpoint with entity', async () => {
+        const entity = { ...userEntity };
+        entity['_id'] = 'entity1';
+        const expectedEntity = dataHelpers.expandEntity(entity);
+        const frozen = Object.freeze(entity);
+        await callMockUpdate(frozen);
+        expect(apiClient.patch).toHaveBeenCalledWith(
+          '/projects/project1/entities/entity1', expectedEntity);
+      });
       it('should call POST /projects/:pid/entities endpoint with entity', async () => {
         const entity = userEntity;
-        const expectedEntity = dataHelpers.expandEntity(entity)
+        const expectedEntity = dataHelpers.expandEntity(entity);
         await callMockCreate(entity);
         expect(apiClient.post).toHaveBeenCalledWith('/projects/project1/entities', expectedEntity);
       });
