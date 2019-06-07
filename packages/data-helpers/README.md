@@ -37,7 +37,7 @@ const {
 } = require('@surix/data-helpers')
 ```
 
-### `expnadEntity`
+### `expandEntity`
 
 Converts a user friendly version of an entity to the raw version of the entity.  
 *Note: For now, dates are interpreted `text` type but will be updated to `datatime` in future*
