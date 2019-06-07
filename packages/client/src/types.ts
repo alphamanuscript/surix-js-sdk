@@ -10,7 +10,7 @@ export interface ProjectEntities {
   get(id: string): Promise<WrappedEntity>;
   query(query?: Query): Promise<WrappedEntity[]>;
   create(entity: Entity): Promise<WrappedEntity>;
-  patch(entity: Entity): Promise<WrappedEntity>;
+  update(entity: Entity): Promise<WrappedEntity>;
 }
 
 export interface ProjectFiles {
