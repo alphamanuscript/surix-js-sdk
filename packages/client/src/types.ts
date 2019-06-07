@@ -11,6 +11,7 @@ export interface ProjectEntities {
   query(query?: Query): Promise<WrappedEntity[]>;
   create(entity: Entity): Promise<WrappedEntity>;
   update(entity: Entity): Promise<WrappedEntity>;
+  put(entity: Entity): Promise<WrappedEntity>;
 }
 
 export interface ProjectFiles {

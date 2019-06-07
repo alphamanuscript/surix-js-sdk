@@ -23,7 +23,7 @@ export class Client {
     }, opts);
     let baseUrl = _opts.environment === 'production' ? PRODUCTION_URL : STAGING_URL;
     baseUrl = _opts.baseUrl || baseUrl;
-    const apiKey = `${_opts.keyId}:${_opts.keySecret}` 
+    const apiKey = `${_opts.keyId}:${_opts.keySecret}`;
     this._apiClient = getApiClient(baseUrl, apiKey);
   }
 
