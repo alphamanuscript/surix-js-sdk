@@ -3,7 +3,7 @@ import { AxiosInstance } from 'axios';
 import * as api from '../../api';
 import { getProjectApi } from '../project';
 
-import { Query } from '../../types';
+import { Query, EntityIds, DeletedEntities } from '../../types';
 
 describe('Project Entities', () => {
   const apiEntities = [
@@ -165,6 +165,42 @@ describe('Project Entities', () => {
           expect(apiClient.put).toHaveBeenCalledWith(
             '/projects/project1/entities/entity1', expectedEntity);
         });
-    });
+      });
+      describe('delete', () => {
+        async function callMockDelete (entityId: string): Promise<dataHelpers.WrappedEntity> {
+          apiClient = api.getApiClient('http://baseurl', 'somekey');
+          jest.spyOn(apiClient, 'delete').mockReturnValue(Promise.resolve({ data: 
+            { ...apiEntities[0] } }));
+          jest.spyOn(dataHelpers, 'wrapEntity');
+          const project = getProjectApi('project1', apiClient);
+          const ent = await project.entities.delete(entityId);
+          return ent;
+        }
+
+        async function callMockDeleteMany (entityIds: EntityIds): Promise<DeletedEntities> {
+          apiClient = api.getApiClient('http://baseurl', 'somekey');
+          jest.spyOn(apiClient, 'delete').mockReturnValue(Promise.resolve({ data: 
+            { deleted: entityIds.entities.length } }));
+          jest.spyOn(dataHelpers, 'wrapEntity');
+          const project = getProjectApi('project1', apiClient);
+          const ent = await project.entities.deleteMany(entityIds);
+          return ent;
+        }
+
+        it('should call DELETE /projects/:pid/entities/:eid', async () => {
+          const entityId = 'entity1';
+          await callMockDelete(entityId);
+          expect(apiClient.delete).toHaveBeenCalledWith(`/projects/project1/entities/${entityId}`);
+        });
+        it('should call DELETE /projects/:pid/entities with a list of entity ids', async () => {
+          const entityIds = {
+            entities: ['entity1', 'entity2']
+          };
+
+          await callMockDeleteMany(entityIds);
+          expect(apiClient.delete).toHaveBeenCalledWith(`/projects/project1/entities`, 
+          { data: entityIds });
+        });
+      });
   }); 
 });
