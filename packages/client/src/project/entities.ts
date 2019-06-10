@@ -1,6 +1,6 @@
 import { ApiEntity,  expandEntity, wrapEntity, wrapEntityArray, WrappedEntity} from '@surix/data-helpers';
 import { AxiosInstance } from 'axios';
-import {  Entity, ProjectEntities, Query, EntityIds, DeletedEntities } from '../types';
+import {  DeletedEntities, Entity, ProjectEntities, Query } from '../types';
 
 export function getProjectEntities (projectId: string, apiClient: AxiosInstance): ProjectEntities {
   return {
@@ -38,10 +38,12 @@ export function getProjectEntities (projectId: string, apiClient: AxiosInstance)
       const returnedEntity = res.data;
       return wrapEntity(returnedEntity);
     },
-    async deleteMany(entityIds: EntityIds): Promise<DeletedEntities> {
+    async deleteMany(entityIds: string[]): Promise<DeletedEntities> {
       const res = await apiClient.delete(`/projects/${projectId}/entities`, 
       {
-        data: entityIds 
+        data: {
+          entities: entityIds
+        }
       });
       return res.data;
     },

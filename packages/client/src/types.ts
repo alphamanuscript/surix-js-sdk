@@ -46,12 +46,9 @@ export interface ProjectEntities {
    * Deletes a bunch of entities that have the provided IDs
    * @param {EntityIds} entityIds A list of IDs
    */
-  deleteMany(entityIds: EntityIds): Promise<DeletedEntities>;
+  deleteMany(entityIds: string[]): Promise<DeletedEntities>;
 }
 
-export interface EntityIds {
-  entities: string[];
-}
 export interface DeletedEntities {
   deleted: number;
 }
