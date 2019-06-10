@@ -160,9 +160,7 @@ console.log(deletedEntity.get('name') + ' was deleted');
 Deletes a bunch of entities identified by the provided ids.
 
 ```javascript
-const entitiesIds = {
-  entities: ['someid1', 'someid2']
-}
+const entitiesIds = ['someid1', 'someid2'];
 
 const response = await project.entities.deleteMany(entitiesIds);
 console.log(response.deleted); // Number of deleted entities
