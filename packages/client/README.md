@@ -144,6 +144,28 @@ entities.forEach((entity) => {
 });
 ```
 
+#### `project.entities.delete(id: string)`
+
+Deletes an entity entirely.
+
+```javascript
+const entityId = 'someid';
+const deletedEntity = await project.entities.delete(entityId);
+
+console.log(deletedEntity.get('name') + ' was deleted');
+```
+
+#### `project.entities.deleteMany(ids: EntityIds)`
+
+Deletes a bunch of entities identified by the provided ids.
+
+```javascript
+const entitiesIds = ['someid1', 'someid2'];
+
+const response = await project.entities.deleteMany(entitiesIds);
+console.log(response.deleted); // Number of deleted entities
+```
+
 ### Files
 
 #### `project.files.get(id: string)`
