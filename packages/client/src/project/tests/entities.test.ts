@@ -3,7 +3,7 @@ import { AxiosInstance } from 'axios';
 import * as api from '../../api';
 import { getProjectApi } from '../project';
 
-import { Query, EntityIds, DeletedEntities } from '../../types';
+import { DeletedEntities, Query } from '../../types';
 
 describe('Project Entities', () => {
   const apiEntities = [
@@ -177,10 +177,10 @@ describe('Project Entities', () => {
           return ent;
         }
 
-        async function callMockDeleteMany (entityIds: EntityIds): Promise<DeletedEntities> {
+        async function callMockDeleteMany (entityIds: string[]): Promise<DeletedEntities> {
           apiClient = api.getApiClient('http://baseurl', 'somekey');
           jest.spyOn(apiClient, 'delete').mockReturnValue(Promise.resolve({ data: 
-            { deleted: entityIds.entities.length } }));
+            { deleted: entityIds.length } }));
           jest.spyOn(dataHelpers, 'wrapEntity');
           const project = getProjectApi('project1', apiClient);
           const ent = await project.entities.deleteMany(entityIds);
@@ -193,13 +193,11 @@ describe('Project Entities', () => {
           expect(apiClient.delete).toHaveBeenCalledWith(`/projects/project1/entities/${entityId}`);
         });
         it('should call DELETE /projects/:pid/entities with a list of entity ids', async () => {
-          const entityIds = {
-            entities: ['entity1', 'entity2']
-          };
+          const entityIds = ['entity1', 'entity2'];
 
           await callMockDeleteMany(entityIds);
           expect(apiClient.delete).toHaveBeenCalledWith(`/projects/project1/entities`, 
-          { data: entityIds });
+          { data: { entities: entityIds } });
         });
       });
   }); 
