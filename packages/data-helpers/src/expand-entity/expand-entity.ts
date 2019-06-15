@@ -1,5 +1,14 @@
 import { DataField, Entity, RawEntity, RawEntityData } from '../types';
 
+/**
+ * This file requires SERIOUS refactoring
+ * Refactoring this should be a tecnical debt
+ */
+
+/**
+ * Converts user entity to system entity by populating the fields with types
+ * @param {Entity} entity 
+ */
 function expandEntity (entity: Entity): RawEntity {
     const { data } = entity;
     const convertedData = expandEntityData(data);
@@ -18,9 +27,10 @@ function expandEntityData (data: DataField): RawEntityData {
                     converted = {
                         type: 'list',
                         // @ts-ignore
-                        value: data[key].map(item => expandEntityData(item))
+                        value: expandArrayValue(data[key])
                     };
-                } else if (data[key] instanceof Date) {
+                //@ts-ignore
+                } else if (typeof data[key].getMonth === 'function') {
                     converted = {
                         type: 'datetime',
                         value: data[key]
@@ -30,7 +40,7 @@ function expandEntityData (data: DataField): RawEntityData {
                         type: 'object',
                         // @ts-ignore
                         value: expandEntityData(data[key])
-                    }
+                    };
                 }
                 break;
             case 'string':
@@ -49,7 +59,40 @@ function expandEntityData (data: DataField): RawEntityData {
         return { ...expanded, [key]: converted };
         }, {});
     return expandedEntity;
-  }
+}
+
+function expandArrayValue(value: any[]): any[] {
+    let values: any[] = [];
+    value.forEach((item: number | string | boolean | DataField) => {
+        switch (typeof item) {
+            case 'object':
+                if(Array.isArray(item)) {
+                    values.push(expandArrayValue(item));
+                } else if (typeof item.getMonth === 'function') {
+                    values.push({
+                        type: 'datetime',
+                        value: item
+                    });
+                }else {
+                    values.push(expandEntityData(item));
+                }
+                break;
+            case 'string':
+                values.push({
+                    type: 'text',
+                    value: item
+                });
+                break;
+            default:
+                values.push({
+                    type: typeof item,
+                    value: item
+                });
+
+        }
+    });
+    return values;
+}
 
 export {
     expandEntity

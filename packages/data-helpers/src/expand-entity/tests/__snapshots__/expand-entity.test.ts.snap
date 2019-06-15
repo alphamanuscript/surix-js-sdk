@@ -46,6 +46,23 @@ Object {
       "type": "text",
       "value": "Kevin Nderitu",
     },
+    "petsAges": Object {
+      "type": "list",
+      "value": Array [
+        Object {
+          "type": "number",
+          "value": 1,
+        },
+        Object {
+          "type": "number",
+          "value": 2,
+        },
+        Object {
+          "type": "number",
+          "value": 4,
+        },
+      ],
+    },
   },
   "tags": Array [
     "sometag",

@@ -20,13 +20,15 @@ describe('ExpandEntity', () => {
                         name: 'Second daughter'
                     }
                 ],
+                petsAges: [1, 2, 4],
                 isOldEnough: true
             },
             tags: ['sometag'],
             _id: 'thisisanid'
         };
     });
+  
     it('should convert successfully', async () => {
-        expect(expandEntity(entity)).toMatchSnapshot()
+        expect(expandEntity(entity)).toMatchSnapshot();
     });
 });
