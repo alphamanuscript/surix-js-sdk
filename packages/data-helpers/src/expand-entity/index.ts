@@ -1,1 +1,1 @@
-export { expandEntity } from './expand-entity';
+export { expandEntity, expandArrayValue as expandArray } from './expand-entity';

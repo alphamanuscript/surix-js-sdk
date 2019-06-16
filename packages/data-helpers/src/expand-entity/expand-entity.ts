@@ -95,5 +95,6 @@ function expandArrayValue(value: any[]): any[] {
 }
 
 export {
-    expandEntity
+    expandEntity,
+    expandArrayValue
 };
