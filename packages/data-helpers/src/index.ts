@@ -16,5 +16,6 @@ export {
 } from './types';
 
 export {
-  expandEntity
+  expandEntity,
+  expandArray
 } from './expand-entity';
