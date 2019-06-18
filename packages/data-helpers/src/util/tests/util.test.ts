@@ -237,4 +237,42 @@ describe('util', () => {
       });
     });
   });
+
+  describe('Expand query', () => {
+    describe('Regex', () => {
+      let query;
+      beforeAll(async () => {
+        query = {
+          query: {
+            name: 'Me myself',
+            title: /developer/i
+          },
+          limit: 100,
+          skip: 2
+        };
+      });
+      it('should expand regex successfully', async () => {
+        expect(util.expandQuery(query)).toMatchSnapshot();
+      });
+    });
+    describe('Dates', () => {
+      let query;
+      beforeAll(async () => {
+        query = {
+          query: {
+            name: 'Me myself',
+            $or: [
+              { time: { $gt: new Date() }},
+              { age: { $lt: new Date() }}
+            ]
+          },
+          limit: 100,
+          skip: 2
+        };
+      });
+      it('should expand regex successfully', async () => {
+        expect(util.expandQuery(query)).toMatchSnapshot();
+      });
+    });
+  });
 });

@@ -1,5 +1,45 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`util Expand query Dates should expand regex successfully 1`] = `
+Object {
+  "limit": 100,
+  "query": Object {
+    "$or": Array [
+      Object {
+        "time": Object {
+          "$gt": Object {
+            "$treatAsDatetime": "2019-06-18T20:55:26.711Z",
+          },
+        },
+      },
+      Object {
+        "age": Object {
+          "$lt": Object {
+            "$treatAsDatetime": "2019-06-18T20:55:26.711Z",
+          },
+        },
+      },
+    ],
+    "name": "Me myself",
+  },
+  "skip": 2,
+}
+`;
+
+exports[`util Expand query Regex should expand regex successfully 1`] = `
+Object {
+  "limit": 100,
+  "query": Object {
+    "name": "Me myself",
+    "title": Object {
+      "$options": "i",
+      "$regex": "/developer/i",
+    },
+  },
+  "skip": 2,
+}
+`;
+
 exports[`util deflateValue when value is complex nested object should recursively convert value to plain object without field metadata 1`] = `
 Object {
   "biz": Array [
