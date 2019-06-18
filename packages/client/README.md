@@ -73,9 +73,9 @@ The entity above would be converted to:
 Dates are expanded as `text` for now and will correctly be expanded to `datetime` in future versions of `@surix/data-helpers`. Arrays are not supported for now.
 
 
-#### `project.entities.patch(entity: Entity)`
+#### `project.entities.update(entity: Entity)`
 
-Updates a entity partially. I.e adds onto the already existing entity identified by the `_id` field.
+Updates an entity partially. I.e adds onto the already existing entity identified by the `_id` field.
 
 ```javascript
 const entity = {
@@ -86,7 +86,7 @@ const entity = {
   tags: ['tag']
 }
 
-const updatedEntity = await project.entities.patch(entity);
+const updatedEntity = await project.entities.update(entity);
 ```
 
  Dates created with the `Date()` function are expanded as `text`. and those created with `new Date()` are correctly expanded to `datetime`.
