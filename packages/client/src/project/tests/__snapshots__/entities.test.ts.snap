@@ -1,31 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Project Entities get should return the entity transformed to WrappedEntity 1`] = `
-EntityWrapper {
-  "_entity": Object {
-    "_id": "e1",
-    "createdAt": "2017-02-22T09:19:33.885Z",
-    "createdBy": Object {
-      "_id": "u1",
-      "type": "user",
-    },
-    "data": Object {
-      "name": Object {
-        "type": "text",
-        "value": "name",
-      },
-    },
-    "tags": Array [
-      "t1",
-    ],
-    "updatedAt": "2018-10-22T09:19:33.885Z",
-  },
-  "createdAt": 2017-02-22T09:19:33.885Z,
-  "updatedAt": 2018-10-22T09:19:33.885Z,
-}
-`;
-
-exports[`Project Entities query create should return an error 1`] = `
+exports[`Project Entities create should return an error 1`] = `
 EntityWrapper {
   "_entity": Object {
     "entity": Object {
@@ -49,6 +24,31 @@ EntityWrapper {
   },
   "createdAt": Date { NaN },
   "updatedAt": Date { NaN },
+}
+`;
+
+exports[`Project Entities get should return the entity transformed to WrappedEntity 1`] = `
+EntityWrapper {
+  "_entity": Object {
+    "_id": "e1",
+    "createdAt": "2017-02-22T09:19:33.885Z",
+    "createdBy": Object {
+      "_id": "u1",
+      "type": "user",
+    },
+    "data": Object {
+      "name": Object {
+        "type": "text",
+        "value": "name",
+      },
+    },
+    "tags": Array [
+      "t1",
+    ],
+    "updatedAt": "2018-10-22T09:19:33.885Z",
+  },
+  "createdAt": 2017-02-22T09:19:33.885Z,
+  "updatedAt": 2018-10-22T09:19:33.885Z,
 }
 `;
 

@@ -262,8 +262,8 @@ describe('util', () => {
           query: {
             name: 'Me myself',
             $or: [
-              { time: { $gt: new Date() }},
-              { age: { $lt: new Date() }}
+              { time: { $gt: new Date('2019-06-18T20:55:26.711Z') }},
+              { age: { $lt: new Date('2019-06-18T20:55:26.711Z') }}
             ]
           },
           limit: 100,
