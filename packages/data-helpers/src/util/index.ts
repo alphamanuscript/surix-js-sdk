@@ -3,5 +3,6 @@ export {
   makeField,
   toFieldPathArray,
   walkEntityPath,
-  walkFieldPath
+  walkFieldPath,
+  expandQuery
 } from './util';

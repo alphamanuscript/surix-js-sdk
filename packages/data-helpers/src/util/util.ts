@@ -83,3 +83,38 @@ export function makeField (value: FieldValue, type: FieldType): Field {
     type
   };
 }
+
+function convertQueryDates(query: any): any {
+  const internalQuery = { ...query };
+  for(const [key, value] of Object.entries(internalQuery)) {
+    switch(typeof value) {
+      case 'object':
+        if (Array.isArray(value)) {
+          internalQuery[key] = value.map(query => convertQueryDates(query));
+          // @ts-ignore
+        } else if (typeof value.getMonth === 'function') {
+          // @ts-ignore
+          internalQuery[key] = { $treatAsDatetime: value.toISOString() };
+          // @ts-ignore
+        } else if (typeof value.exec === 'function') {
+          internalQuery[key] = { 
+            // @ts-ignore
+            $regex: value.toString(), 
+            // @ts-ignore
+            $options: value.flags 
+          }
+        } else {
+          internalQuery[key] = convertQueryDates(value);
+        }
+        break;
+      default:
+        internalQuery[key] = value;
+    }
+  }
+  
+  return internalQuery;
+}
+
+export function expandQuery(query:any): any {
+  return { ...query, query: convertQueryDates(query.query) };
+}

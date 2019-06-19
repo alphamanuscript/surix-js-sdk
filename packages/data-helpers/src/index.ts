@@ -19,3 +19,7 @@ export {
   expandEntity,
   expandArray
 } from './expand-entity';
+
+export {
+  expandQuery
+} from './util';
