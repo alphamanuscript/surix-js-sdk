@@ -67,12 +67,7 @@ export function getProjectEntities (projectId: string, apiClient: AxiosInstance)
     // Tags
 
     async addTags(entityId: string, tags: string[]): Promise<WrappedEntity> {
-      let _tags: string[] = [];
-      if(typeof tags === 'string') {
-        _tags = Array.from([tags]);
-      } else {
-        _tags = Array.from(tags);
-      }
+      const _tags: string[] = Array.isArray(tags)? tags: Array.from([tags]);
       const res = await apiClient.put<ApiEntity>(
         `/projects/${projectId}/entities/${entityId}/tags`,
         {
@@ -84,12 +79,7 @@ export function getProjectEntities (projectId: string, apiClient: AxiosInstance)
     },
 
     async removeTags(entityId: string, tags: string[]): Promise<WrappedEntity> {
-      let _tags: string[] = [];
-      if(typeof tags === 'string') {
-        _tags = Array.from([tags]);
-      } else {
-        _tags = Array.from(tags);
-      }
+      const _tags: string[] =  Array.isArray(tags)? tags: Array.from([tags]);
       const res = await apiClient.delete(
         `/projects/${projectId}/entities/${entityId}/tags`,
         {
