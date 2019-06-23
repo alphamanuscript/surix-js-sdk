@@ -166,6 +166,31 @@ const response = await project.entities.deleteMany(entitiesIds);
 console.log(response.deleted); // Number of deleted entities
 ```
 
+#### `project.entities.addTags(entityId: string, tags: string | string[])`
+
+Adds tags to an entity identified by the  `entityId` provided
+
+```javascript
+const entityId = 'someid';
+const entity = project.entities.addTags(entityId, 'new-tag'); // A single tag
+
+const entity = project.entities.addTags(entityId, ['new-tag', 'another-tag']); // Multiple tags
+
+// Returns the updated entity
+```
+
+#### `project.entities.removeTags(entityId: string, tags: string | string[])`
+
+Removes tags from the entity identified by the  `entityId` provided
+
+```javascript
+const entityId = 'someid';
+const entity = project.entities.removeTags(entityId, 'new-tag'); // A single tag
+
+const entity = project.entities.removeTags(entityId, ['new-tag', 'another-tag']); // Multiple tags
+
+// Returns the updated entity
+```
 ### Files
 
 #### `project.files.get(id: string)`
@@ -195,4 +220,13 @@ Fetches all tags in project.
 ```javascript
 const tags = await project.tags.list();
 tags.forEach((tag) => console.log(tag.name));
+```
+
+#### `project.tags.rename(oldName: string, newName: string)`
+
+Renames a tag from `oldName` to `newName`
+
+```javascript
+const tag = await project.tags.rename('oldName', 'newName');
+console.log(tag.name) // Should be newName
 ```
