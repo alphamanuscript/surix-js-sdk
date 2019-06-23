@@ -6,27 +6,12 @@ describe('Client', () => {
   const authKey = {
     keyId: 'someid',
     keySecret: 'somesecret'
-  }
+  };
 
   describe('new instance', () => {
-    it('should create http client based on production Surix API url', () => {
+    it('should create http client based MVP url', () => {
       const spy = jest.spyOn(api, 'getApiClient');
       new Client({ ...authKey });
-      expect(spy.mock.calls).toMatchSnapshot();
-      spy.mockRestore();
-    });
-    describe('when environment is not set to production', () => {
-      it('should create http client based on staging url', () => {
-        const spy = jest.spyOn(api, 'getApiClient');
-        new Client({ environment: 'staging', ...authKey });
-        expect(spy.mock.calls).toMatchSnapshot();
-        spy.mockRestore();
-      });
-    });
-    it('should override baseUrl if baseUrl option is provided', () => {
-      const spy = jest.spyOn(api, 'getApiClient');
-      const baseUrl = 'http://mydomain.com/api';
-      new Client({ baseUrl, ...authKey });
       expect(spy.mock.calls).toMatchSnapshot();
       spy.mockRestore();
     });

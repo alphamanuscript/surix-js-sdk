@@ -17,6 +17,9 @@ export function getProjectEntities (projectId: string, apiClient: AxiosInstance)
     },
     async query(query: Query = {}): Promise<WrappedEntity[]> {
       const expandedQuery = expandQuery(query);
+      if (Object.keys(expandedQuery.query).length === 0) {
+        delete expandedQuery.query;
+      }
       const res = await apiClient.post<ApiEntity[]>(
         `/projects/${projectId}/entities/query`, expandedQuery);
       const entities = res.data;
