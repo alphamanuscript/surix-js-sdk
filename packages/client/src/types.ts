@@ -47,6 +47,18 @@ export interface ProjectEntities {
    * @param {EntityIds} entityIds A list of IDs
    */
   deleteMany(entityIds: string[]): Promise<DeletedEntities>;
+  /**
+   * Adds tags onto an entity
+   * @param id an ID representing an Entity
+   * @param tags A single tag or multiple tag IDs
+   */
+  addTags(id: string, tags: string | string[]): Promise<WrappedEntity>;
+  /**
+   * Removes tags from an entity
+   * @param id an ID representing an Entity
+   * @param tags A single tag or multiple tag IDs
+   */
+  removeTags(id: string, tags: string | string[]): Promise<WrappedEntity>;
 }
 
 export interface DeletedEntities {
@@ -59,6 +71,8 @@ export interface ProjectFiles {
 
 export interface ProjectTags {
   list(): Promise<TagList>;
+  rename(oldName: string, newName: string): Promise<Tag>;
+
 }
 
 export interface Query {
@@ -115,3 +129,4 @@ export interface Entity {
   tags?: string[];
   _id?: string;
 }
+export type Tag = TagListItem;
