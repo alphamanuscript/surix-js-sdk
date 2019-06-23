@@ -172,9 +172,9 @@ Adds tags to an entity identified by the  `entityId` provided
 
 ```javascript
 const entityId = 'someid';
-const entity = project.entities.addTags(entityId, 'new-tag'); // A single tag
+const entity = await project.entities.addTags(entityId, 'new-tag'); // A single tag
 
-const entity = project.entities.addTags(entityId, ['new-tag', 'another-tag']); // Multiple tags
+const entity = await project.entities.addTags(entityId, ['new-tag', 'another-tag']); // Multiple tags
 
 // Returns the updated entity
 ```
@@ -185,9 +185,9 @@ Removes tags from the entity identified by the  `entityId` provided
 
 ```javascript
 const entityId = 'someid';
-const entity = project.entities.removeTags(entityId, 'new-tag'); // A single tag
+const entity = await project.entities.removeTags(entityId, 'new-tag'); // A single tag
 
-const entity = project.entities.removeTags(entityId, ['new-tag', 'another-tag']); // Multiple tags
+const entity = await project.entities.removeTags(entityId, ['new-tag', 'another-tag']); // Multiple tags
 
 // Returns the updated entity
 ```
@@ -207,7 +207,7 @@ console.log(file.downloadUrl);
 Fetches all files in the project.
 
 ```javascript
-const files = await.project.files.list();
+const files = await project.files.list();
 files.forEach((file) => console.log(file.downloadUrl));
 ```
 
