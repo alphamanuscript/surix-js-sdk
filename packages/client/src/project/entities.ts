@@ -7,7 +7,7 @@ import {
   WrappedEntity
 } from '@surix/data-helpers';
 import { AxiosInstance } from 'axios';
-import {  DeletedEntities, Entity, ProjectEntities, Query } from '../types';
+import {  DeletedEntities, Entity, ProjectEntities, Query, TagList } from '../types';
 
 export function getProjectEntities (projectId: string, apiClient: AxiosInstance): ProjectEntities {
   return {
@@ -60,6 +60,34 @@ export function getProjectEntities (projectId: string, apiClient: AxiosInstance)
       const expandedEntity = expandEntity(entity);
       const res = await apiClient.post<ApiEntity>(
         `/projects/${projectId}/entities`, expandedEntity);
+      const returnedEntity = res.data;
+      return wrapEntity(returnedEntity);
+    },
+
+    // Tags
+
+    async addTags(entityId: string, tags: string[]): Promise<WrappedEntity> {
+      const _tags: string[] = Array.isArray(tags)? tags: Array.from([tags]);
+      const res = await apiClient.put<ApiEntity>(
+        `/projects/${projectId}/entities/${entityId}/tags`,
+        {
+          tags: _tags
+        }
+      );
+      const returnedEntity = res.data;
+      return wrapEntity(returnedEntity);
+    },
+
+    async removeTags(entityId: string, tags: string[]): Promise<WrappedEntity> {
+      const _tags: string[] =  Array.isArray(tags)? tags: Array.from([tags]);
+      const res = await apiClient.delete(
+        `/projects/${projectId}/entities/${entityId}/tags`,
+        {
+          data: {
+            tags: _tags
+          }
+        }
+      );
       const returnedEntity = res.data;
       return wrapEntity(returnedEntity);
     }

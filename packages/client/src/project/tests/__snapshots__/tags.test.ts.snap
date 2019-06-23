@@ -1,5 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Project tags Rename should return the nre tag 1`] = `
+Object {
+  "name": "newName",
+}
+`;
+
 exports[`Project tags list should return tags list 1`] = `
 Array [
   Object {
