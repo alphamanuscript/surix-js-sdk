@@ -210,4 +210,72 @@ describe('Project Entities', () => {
       { data: { entities: entityIds } });
     });
   });
+  describe('addTags', () => {
+    let apiClient: AxiosInstance;
+    async function callMockAddTags (entityId: string, tags: string | string[]): 
+    Promise<dataHelpers.WrappedEntity> {
+      apiClient = api.getApiClient('someid', 'somekey');
+      jest.spyOn(apiClient, 'put').mockReturnValue(Promise.resolve({ data: 
+        { ...apiEntities[0] } }));
+      jest.spyOn(dataHelpers, 'wrapEntity');
+      const project = getProjectApi('project1', apiClient);
+      const ent = await project.entities.addTags(entityId, tags);
+      return ent;
+    }
+    it('should call PUT /projects/:pid/entities/:eid/tags', async () => {
+      const tags = ['tag1', 'tag2'];
+      await callMockAddTags('entity1', tags);
+      expect(apiClient.put).toHaveBeenCalledWith(
+        `/projects/project1/entities/entity1/tags`,
+        {
+          tags
+        }
+      );
+    });
+    it('should call PUT /projects/:pid/entities/:eid/tags with array when given a string', 
+    async () => {
+      const tags = 'tag1';
+      await callMockAddTags('entity1', tags);
+      expect(apiClient.put).toHaveBeenCalledWith(
+        `/projects/project1/entities/entity1/tags`,
+        {
+          tags: [tags]
+        }
+      );
+    });
+  });
+  describe('removeTags', () => {
+    let apiClient: AxiosInstance;
+    async function callMockAddTags (entityId: string, tags: string | string[]): 
+    Promise<dataHelpers.WrappedEntity> {
+      apiClient = api.getApiClient('someid', 'somekey');
+      jest.spyOn(apiClient, 'delete').mockReturnValue(Promise.resolve({ data: 
+        { ...apiEntities[0] } }));
+      jest.spyOn(dataHelpers, 'wrapEntity');
+      const project = getProjectApi('project1', apiClient);
+      const ent = await project.entities.removeTags(entityId, tags);
+      return ent;
+    }
+    it('should call DELETE /projects/:pid/entities/:eid/tags', async () => {
+      const tags = ['tag1', 'tag2'];
+      await callMockAddTags('entity1', tags);
+      expect(apiClient.delete).toHaveBeenCalledWith(
+        `/projects/project1/entities/entity1/tags`,
+        {
+          data: {tags}
+        }
+      );
+    });
+    it('should call DELETE /projects/:pid/entities/:eid/tags with array when given a string', 
+    async () => {
+      const tags = 'tag1';
+      await callMockAddTags('entity1', tags);
+      expect(apiClient.delete).toHaveBeenCalledWith(
+        `/projects/project1/entities/entity1/tags`,
+        {
+          data: { tags: [tags] }
+        }
+      );
+    });
+  });
 });
