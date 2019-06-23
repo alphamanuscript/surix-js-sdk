@@ -9,24 +9,25 @@ const { Client } = require('@surix/client');
 
 import { Client } from '@surix/client';
 ```
-
+Or on the browser:
+```html
+<script src="https://cdn.jsdelivr.net/npm/@surix/client@[version]/dist/client.min.js"></script>
+<!-- Replace version with an actual version number -->
+```
 Create Client instance:
 
 ```javascript
-const client = new Client();
-```
-
-Create Client for the server
-
-Use custom base URL
-
-```javascript
 const client = new Client({ 
-  environment: 'staging', // staging or production
-  baseUrl: 'https://mydomain.com/api', // custom server
   keyId: 'key id provided by surix',
   keySecret: 'key secret provided by surix'
   });
+```
+Or on the browser:
+```js
+const client = new Surix.Client({
+  keyId: 'key id provided by surix',
+  keySecret: 'key secret provided by surix'
+});
 ```
 
 Note: `keyId` and `keySecret` are provided in the surix dashboard, under account settings.
