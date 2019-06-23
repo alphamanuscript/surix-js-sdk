@@ -1,27 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Client new instance should create http client based on production Surix API url 1`] = `
+exports[`Client new instance should create http client based MVP url 1`] = `
 Array [
   Array [
-    "https://api.surix.co/api",
-    "someid:somesecret",
-  ],
-]
-`;
-
-exports[`Client new instance should override baseUrl if baseUrl option is provided 1`] = `
-Array [
-  Array [
-    "http://mydomain.com/api",
-    "someid:somesecret",
-  ],
-]
-`;
-
-exports[`Client new instance when environment is not set to production should create http client based on staging url 1`] = `
-Array [
-  Array [
-    "https://surix-staging.herokuapp.com/api",
+    "https://surix-review3.herokuapp.com/api",
     "someid:somesecret",
   ],
 ]

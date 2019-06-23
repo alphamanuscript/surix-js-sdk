@@ -83,7 +83,7 @@ describe('Project Entities', () => {
       it('should call query endpoint with empty object', async () => {
         await callMockedQuery();
         expect(apiClient.post).toHaveBeenCalledWith(`/projects/project1/entities/query`, 
-        { query: {} });
+        {});
       });
     });
   }); 
