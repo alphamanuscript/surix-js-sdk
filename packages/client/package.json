@@ -63,7 +63,7 @@
   },
   "dependencies": {
     "@surix/data-helpers": "^0.7.4",
-    "axios": "^0.18.0",
+    "axios": "^0.21.2",
     "tslib": "^1.10.0"
   }
 }
